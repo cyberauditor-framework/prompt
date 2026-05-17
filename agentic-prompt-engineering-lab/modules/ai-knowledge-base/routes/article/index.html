@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Knowledge Base - Article</title>
+    <link rel="stylesheet" href="../../styles/kb.css" />
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]] },
+        svg: { fontCache: "global" }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="kb-skip-link" href="#article-content">Skip to content</a>
+    <main class="kb-shell kb-article-shell">
+      <header class="kb-header">
+        <div>
+          <p class="kb-eyebrow">Agentic Prompt Engineering Lab</p>
+          <h1>AI Knowledge Base</h1>
+          <p class="kb-subtitle">Reference article view</p>
+        </div>
+        <a class="kb-shortcut-link" href="../kb/index.html">Back to /kb</a>
+      </header>
+
+      <div class="kb-layout kb-layout-article">
+        <aside class="kb-left-pane" id="article-left"></aside>
+        <section class="kb-center-pane">
+          <div id="article-content"></div>
+        </section>
+        <aside class="kb-right-pane" id="article-right"></aside>
+      </div>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

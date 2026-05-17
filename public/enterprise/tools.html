@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Lab Tools – Enterprise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/enterprise/styles.css" />
+    <style>
+      .tools-page {
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .tools-header {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        background: color-mix(in srgb, var(--surface) 90%, #eaf2fb 10%);
+        border-bottom: 1px solid var(--border);
+        padding: var(--space-3) var(--space-4);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-3);
+      }
+
+      .tools-header h1 {
+        margin: 0;
+        font-size: clamp(1.1rem, 2.8vw, 1.5rem);
+      }
+
+      .tools-header-sub {
+        margin: 2px 0 0;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.875rem;
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 6px 14px;
+        background: var(--surface);
+        white-space: nowrap;
+        transition: background-color 120ms ease, transform 100ms ease;
+      }
+
+      .back-link:hover {
+        background: var(--surface-alt);
+        transform: translateX(-2px);
+      }
+
+      .tools-body {
+        flex: 1;
+        padding: var(--space-5) var(--space-4);
+        max-width: 1140px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .tools-section-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 0 0 var(--space-3);
+      }
+
+      .tools-section-label:not(:first-child) {
+        margin-top: var(--space-5);
+      }
+
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: var(--space-4);
+        margin-bottom: var(--space-2);
+      }
+
+      .tool-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: var(--space-5);
+        text-decoration: none;
+        color: var(--text);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+        transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+      }
+
+      .tool-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 18px 44px rgba(16, 32, 52, 0.13);
+        border-color: var(--accent);
+      }
+
+      .tool-card:focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 2px;
+      }
+
+      .tool-card-icon {
+        font-size: 2rem;
+        line-height: 1;
+        margin-bottom: 2px;
+      }
+
+      .tool-card-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--accent);
+        margin: 0;
+      }
+
+      .tool-card-desc {
+        font-size: 0.875rem;
+        color: var(--muted);
+        margin: 0;
+        line-height: 1.55;
+      }
+
+      .tool-card-badge {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 2px 8px;
+        border-radius: 20px;
+        background: var(--surface-alt);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        margin-top: auto;
+        align-self: flex-start;
+      }
+
+      .tools-footer {
+        text-align: center;
+        padding: var(--space-5);
+        color: var(--muted);
+        font-size: 0.85rem;
+        border-top: 1px solid var(--border);
+      }
+
+      @media (max-width: 600px) {
+        .tools-header {
+          flex-wrap: wrap;
+        }
+        .back-link {
+          font-size: 0.8rem;
+          padding: 5px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tools-page">
+      <header class="tools-header" role="banner">
+        <div>
+          <h1>AI Lab Tools</h1>
+          <p class="tools-header-sub">Quick access to all AI tools and modules</p>
+        </div>
+        <a href="/enterprise" class="back-link" aria-label="Back to Mission Board">&#8592; Back to Mission Board</a>
+      </header>
+
+      <main class="tools-body" id="main-content">
+        <p class="tools-section-label">Enterprise Tools</p>
+        <div class="tools-grid" role="list">
+
+          <a href="/enterprise/?section=ai-prompt-engineering" class="tool-card" role="listitem">
+            <div class="tool-card-icon" aria-hidden="true">&#129504;</div>
+            <h2 class="tool-card-title">AI Prompt Engineering</h2>
+            <p class="tool-card-desc">
+              Curated AI news, tutorials, and research from major LLM providers with keyword-first
+              retrieval, date filters, and a custom prompt editor.
+            </p>
+            <span class="tool-card-badge">Enterprise</span>
+          </a>
+
+          <a href="/mission-control" class="tool-card" role="listitem">
+            <div class="tool-card-icon" aria-hidden="true">&#129302;</div>
+            <h2 class="tool-card-title">Agents</h2>
+            <p class="tool-card-desc">
+              Prompt Coach Mission Control — design, test, and supervise AI agent workflows with
+              the visual canvas and execution sandbox.
+            </p>
+            <span class="tool-card-badge">Mission Control</span>
+          </a>
+
+        </div>
+
+        <p class="tools-section-label">Agentic Lab Modules</p>
+        <div class="tools-grid" role="list">
+
+          <a href="/agentic-lab/modules/ai-training/routes/index.html" class="tool-card" role="listitem">
+            <div class="tool-card-icon" aria-hidden="true">&#127891;</div>
+            <h2 class="tool-card-title">AI Trainer Center</h2>
+            <p class="tool-card-desc">
+              Structured AI training curriculum with categorized lessons, quizzes, progress
+              tracking, and code walkthroughs.
+            </p>
+            <span class="tool-card-badge">Agentic Lab</span>
+          </a>
+
+          <a href="/agentic-lab/modules/ai-knowledge-base/routes/kb/index.html" class="tool-card" role="listitem">
+            <div class="tool-card-icon" aria-hidden="true">&#128218;</div>
+            <h2 class="tool-card-title">AI Knowledge Base</h2>
+            <p class="tool-card-desc">
+              Searchable library of AI articles, glossary, FAQ, and an AI-powered
+              &ldquo;Ask KB&rdquo; Q&amp;A feature grounded in top articles.
+            </p>
+            <span class="tool-card-badge">Agentic Lab</span>
+          </a>
+
+        </div>
+      </main>
+
+      <footer class="tools-footer" role="contentinfo">
+        Enterprise Operations Console &mdash; AI Lab Tools Hub
+      </footer>
+    </div>
+  </body>
+</html>

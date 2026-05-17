@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agentic Prompt Engineering Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">AI Prompt Engineering Companion</p>
+          <h1>Agentic Prompt Engineering Lab</h1>
+        </div>
+        <div class="header-controls">
+          <div class="mode-switch" role="tablist" aria-label="Lab mode">
+            <button class="mode-btn is-active" data-mode="learn" role="tab" aria-selected="true">Learn</button>
+            <button class="mode-btn" data-mode="practice" role="tab" aria-selected="false">Practice</button>
+            <button class="mode-btn" data-mode="evaluate" role="tab" aria-selected="false">Evaluate</button>
+          </div>
+          <div class="agent-indicator">
+            Active Agent:
+            <strong id="active-agent">Deliberative</strong>
+          </div>
+        </div>
+      </header>
+
+      <div class="workspace-layout">
+        <aside class="sidebar">
+          <h2>Pattern Families</h2>
+          <nav id="pattern-nav" aria-label="Pattern families">
+            <button class="pattern-btn is-current" data-pattern="foundations">Foundations</button>
+            <button class="pattern-btn" data-pattern="reasoning">Reasoning Patterns</button>
+            <button class="pattern-btn" data-pattern="action-tool-use">Action & Tool Use</button>
+            <button class="pattern-btn" data-pattern="agent-architectures">Agent Architectures</button>
+            <button class="pattern-btn" data-pattern="multi-agent-collab">Multi-Agent Collaboration</button>
+            <button class="pattern-btn" data-pattern="routing-orchestration">Routing & Orchestration</button>
+            <button class="pattern-btn" data-pattern="feedback-adaptation">Feedback & Adaptation</button>
+            <button class="pattern-btn" data-pattern="reflection-self-improvement">Reflection & Self-Improvement</button>
+            <button class="pattern-btn" data-pattern="capstone-lab">Capstone Lab</button>
+          </nav>
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-section-label">RAG &amp; Retrieval</div>
+          <nav aria-label="RAG and embeddings learning path">
+            <button class="pattern-btn" data-pattern="rag-embeddings">Embeddings</button>
+            <button class="pattern-btn" data-pattern="rag-vector-db">Vector Databases</button>
+            <button class="pattern-btn" data-pattern="rag-core">RAG Core &amp; Chunking</button>
+            <button class="pattern-btn" data-pattern="rag-prompt-patterns">RAG Prompt Patterns</button>
+            <button class="pattern-btn" data-pattern="rag-agentic">Agentic RAG &amp; Evaluation</button>
+          </nav>
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-section-label">Reference</div>
+          <nav aria-label="Reference pages">
+            <a class="pattern-btn techniques-link" href="techniques.html">
+              <span class="techniques-link-icon">📚</span> Techniques Reference
+            </a>
+            <a class="pattern-btn techniques-link" href="agent-builder.html"><span class="techniques-link-icon">🤖</span> Agent Builder</a>
+          </nav>
+        </aside>
+
+        <main class="main-panel">
+          <section class="panel-grid">
+            <article class="panel-card">
+              <h3>Explanation</h3>
+              <p id="pattern-explanation"></p>
+            </article>
+
+            <article class="panel-card">
+              <h3>Visual Flow</h3>
+              <ol id="pattern-flow" class="flow-list"></ol>
+            </article>
+
+            <article class="panel-card">
+              <div class="card-title-row">
+                <h3>Reusable Prompt Template</h3>
+                <button id="copy-template" class="ghost-btn">Copy</button>
+              </div>
+              <pre id="pattern-template" class="template-box"></pre>
+            </article>
+
+            <article class="panel-card">
+              <h3>Recommended LLMs</h3>
+              <ul id="pattern-llms" class="recommend-list" aria-live="polite"></ul>
+            </article>
+
+            <article class="panel-card">
+              <h3>Learn More (URL-Validated)</h3>
+              <ul id="pattern-resources" class="resource-list" aria-live="polite"></ul>
+              <p class="resource-note" id="resource-validation-note"></p>
+            </article>
+          </section>
+
+          <section class="chat-lab">
+            <div class="chat-header">
+              <div class="chat-header-top">
+                <div>
+                  <h3>Chat Coach</h3>
+                  <p>Guided explanations, practice support, and evaluation feedback loops.</p>
+                </div>
+                <div class="chat-header-actions">
+                  <span class="chat-history-badge" id="chat-history-badge" title="Turns in persistent memory">0 turns</span>
+                  <button id="chat-history-toggle" class="ghost-btn" type="button">History</button>
+                  <button id="chat-new" class="ghost-btn chat-new-btn" type="button">+ New Chat</button>
+                </div>
+              </div>
+              <div class="chat-metrics" aria-live="polite">
+                <p>Input Tokens: <strong id="metric-input-tokens">0</strong></p>
+                <p>Output Tokens: <strong id="metric-output-tokens">0</strong></p>
+                <p>Total Tokens: <strong id="metric-total-tokens">0</strong></p>
+                <p>Input Cost: <strong id="metric-input-cost">$0.0000</strong></p>
+                <p>Output Cost: <strong id="metric-output-cost">$0.0000</strong></p>
+                <p>Total Cost: <strong id="metric-total-cost">$0.0000</strong></p>
+              </div>
+            </div>
+
+            <!-- Persistent history panel (hidden by default) -->
+            <div id="chat-history-panel" class="chat-history-panel" hidden aria-live="polite"></div>
+
+            <!-- Save-to-library toast -->
+            <div id="save-toast" class="save-toast" aria-live="assertive" hidden></div>
+
+            <div id="chat-log" class="chat-log" aria-live="polite"></div>
+            <div class="chat-input-row">
+              <textarea id="chat-input" rows="4" placeholder="Ask about this pattern, request an example, or submit your reasoning..."></textarea>
+              <button id="chat-send" class="solid-btn">Send</button>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer class="app-footer">
+        <p>Current Pattern: <strong id="footer-pattern">Foundations</strong></p>
+        <p>Confidence Score: <strong id="footer-confidence">0.62</strong></p>
+        <p>
+          Reflection Status:
+          <button id="reflection-toggle" class="ghost-btn" aria-pressed="false">Off</button>
+        </p>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

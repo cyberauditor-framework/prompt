@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Enterprise Operations Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/enterprise/styles.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="app-shell" id="app-shell">
+      <header class="app-header" role="banner">
+        <div class="header-title-area">
+          <button
+            class="icon-btn mobile-only"
+            id="drawer-toggle"
+            aria-label="Open navigation menu"
+            aria-controls="sidebar"
+            aria-expanded="false"
+            type="button"
+          >
+            <span aria-hidden="true">Menu</span>
+          </button>
+          <h1>Operations Mission Board</h1>
+          <p class="header-subtitle">Enterprise prompt and workflow supervision</p>
+        </div>
+
+        <div class="header-actions" role="toolbar" aria-label="Header actions">
+          <button class="btn secondary" type="button" id="refresh-btn">Refresh</button>
+          <button class="btn secondary" type="button" id="validate-btn">Validate</button>
+          <button class="btn primary" type="button" id="deploy-btn">Deploy</button>
+        </div>
+      </header>
+
+      <div class="content-grid">
+        <aside
+          class="app-sidebar"
+          id="sidebar"
+          aria-label="Primary navigation"
+          aria-hidden="false"
+        >
+          <nav class="sidebar-nav" aria-label="Sidebar menu">
+            <h2 class="sidebar-title">Navigation</h2>
+            <ul class="nav-list">
+              <li><a href="#" class="nav-link" data-section="overview">Overview</a></li>
+              <!-- Moved to AI Lab Tools hub page -->
+              <li style="display:none"><a href="/mission-control" class="nav-link" data-section="agents">Agents</a></li>
+              <li style="display:none"><a href="#" class="nav-link" data-section="ai-prompt-engineering">AI Prompt Engineering</a></li>
+              <li><a href="/enterprise/tools.html" class="nav-link">AI Lab Tools</a></li>
+              <li><a href="/agentic-lab/prompt-assistant.html" class="nav-link">Prompt Assistant</a></li>
+              <li><a href="/agentic-lab/techniques.html" class="nav-link">Techniques</a></li>
+              <li><a href="/agentic-lab" class="nav-link" data-section="agentic-lab">Agentic Prompt Engineering Lab</a></li>
+              <li><a href="#" class="nav-link" data-section="prompt-library">Prompt library</a></li>
+              <li><a href="#" class="nav-link" data-section="help-library">Help Library</a></li>
+              <li><a href="#" class="nav-link" data-section="logs">Logs</a></li>
+              <li><a href="#" class="nav-link" data-section="settings">Settings</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+
+        <main class="app-main" id="main-content" tabindex="-1">
+          <section class="main-card" id="overview-panel" aria-labelledby="overview-title">
+            <h2 id="overview-title">Overview</h2>
+            <p>
+              Mission Control now includes background AI retrieval jobs with progress and cancellation, incremental URL-deduplicated ingestion, educational/tutorial-first source prioritization, prompt template defaults with Apply/Get queueing, date range filters, and LLM token telemetry.
+            </p>
+            <p>
+              Use this page to monitor endpoint health, validate database integrity across prompt/log/news stores, and confirm runtime readiness for the enterprise workflow.
+            </p>
+
+            <div class="health-grid" id="health-grid">
+              <article class="health-card">
+                <h3>API Server</h3>
+                <p class="mono" id="health-api-status">Checking...</p>
+                <p class="mono" id="health-api-uptime">Uptime: --</p>
+              </article>
+
+              <article class="health-card">
+                <h3>Database</h3>
+                <p class="mono" id="health-db-status">Checking...</p>
+                <p class="mono" id="health-db-counts">Prompt Patterns: -- | Prompt Logs: -- | Saved Prompts: -- | Event Logs: -- | News Cards: -- | News Articles: --</p>
+              </article>
+
+              <article class="health-card">
+                <h3>LLM Studio</h3>
+                <p class="mono" id="health-llm-status">Checking...</p>
+                <p class="mono" id="health-llm-endpoint">Endpoint: --</p>
+              </article>
+            </div>
+
+            <div class="health-detail">
+              <h3>Endpoint Health</h3>
+              <ul class="health-list mono" id="health-endpoints-list">
+                <li>Loading endpoint checks...</li>
+              </ul>
+              <p class="mono" id="health-last-refresh">Last refresh: --</p>
+            </div>
+
+            <div class="health-detail">
+              <h3>Database Catalog</h3>
+              <ul class="health-list mono" id="health-databases-list">
+                <li>Loading database catalog...</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="main-card" id="status-panel" aria-labelledby="status-title">
+            <h2 id="status-title">System Status</h2>
+            <div class="status-grid">
+              <article class="status-pill" aria-label="Availability">
+                <span class="status-label">Availability</span>
+                <strong id="status-availability">--</strong>
+              </article>
+              <article class="status-pill" aria-label="Active Agents">
+                <span class="status-label">Prompt Patterns</span>
+                <strong id="status-active-agents">--</strong>
+              </article>
+              <article class="status-pill" aria-label="Pending Reviews">
+                <span class="status-label">Prompt Logs</span>
+                <strong id="status-pending-reviews">--</strong>
+              </article>
+            </div>
+
+            <div class="health-detail" style="margin-top:16px">
+              <div class="card-headline" style="align-items:center">
+                <h3 style="margin:0">Event Logs</h3>
+                <div class="form-actions" style="margin:0">
+                  <select id="logs-level-filter" class="text-field" style="min-width:140px">
+                    <option value="">All levels</option>
+                    <option value="error">Error</option>
+                    <option value="warn">Warn</option>
+                    <option value="info">Info</option>
+                    <option value="debug">Debug</option>
+                  </select>
+                  <button class="btn secondary" type="button" id="refresh-logs-btn">Refresh Logs</button>
+                  <button class="btn secondary" type="button" id="clear-logs-view-btn">Clear View</button>
+                </div>
+              </div>
+              <p class="mono" id="logs-summary">Loading logs...</p>
+              <pre class="mono" id="logs-review" style="white-space:pre-wrap;max-height:220px;overflow:auto;border:1px solid var(--border);border-radius:10px;background:#f8fbff;padding:12px;margin:0 0 10px">Loading review...</pre>
+              <pre class="mono" id="logs-console" style="white-space:pre-wrap;max-height:320px;overflow:auto;border:1px solid var(--border);border-radius:10px;background:#f8fbff;padding:12px;margin:0">Loading...</pre>
+            </div>
+          </section>
+
+          <section class="main-card" id="settings-panel" aria-labelledby="settings-title" hidden>
+            <div class="card-headline">
+              <div>
+                <h2 id="settings-title">LLM Studio Setup</h2>
+                <p class="section-copy">
+                  Configure the local LLM Studio endpoint used by your prompt engineering workflows.
+                </p>
+              </div>
+              <span class="config-badge" id="llm-studio-state" aria-live="polite">Not configured</span>
+            </div>
+
+            <form class="settings-form" id="llm-studio-form" novalidate>
+              <div class="form-grid">
+                <div class="field-group">
+                  <label for="llm-base-url">Base URL</label>
+                  <input
+                    class="text-field"
+                    id="llm-base-url"
+                    name="baseUrl"
+                    type="url"
+                    inputmode="url"
+                    autocomplete="url"
+                    placeholder="http://localhost:1234/v1"
+                    required
+                  />
+                </div>
+
+                <div class="field-group">
+                  <label for="llm-model">Default Model</label>
+                  <div class="combo-row">
+                    <input
+                      class="text-field"
+                      id="llm-model"
+                      name="model"
+                      type="text"
+                      list="llm-model-list"
+                      autocomplete="off"
+                      placeholder="qwen2.5-7b-instruct"
+                      required
+                    />
+                    <button class="btn secondary" type="button" id="fetch-models-btn" title="Fetch available models from LLM Studio">Fetch Models</button>
+                  </div>
+                  <datalist id="llm-model-list"></datalist>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="field-group">
+                  <label for="llm-api-key">API Key</label>
+                  <input
+                    class="text-field"
+                    id="llm-api-key"
+                    name="apiKey"
+                    type="password"
+                    autocomplete="off"
+                    placeholder="Optional for local setups"
+                  />
+                </div>
+
+                <div class="field-group">
+                  <label for="llm-timeout">Timeout (ms)</label>
+                  <input
+                    class="text-field"
+                    id="llm-timeout"
+                    name="timeout"
+                    type="number"
+                    inputmode="numeric"
+                    min="1000"
+                    step="500"
+                    placeholder="30000"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="llm-system-prompt">System Prompt Prefix</label>
+                <textarea
+                  class="text-field text-area"
+                  id="llm-system-prompt"
+                  name="systemPrompt"
+                  rows="4"
+                  placeholder="You are an enterprise prompt engineering assistant..."
+                ></textarea>
+              </div>
+
+              <div class="toggle-grid" role="group" aria-label="LLM Studio options">
+                <label class="toggle-field">
+                  <input id="llm-health-check" name="healthCheck" type="checkbox" checked />
+                  <span>Validate connection before use</span>
+                </label>
+                <label class="toggle-field">
+                  <input id="llm-save-local" name="saveLocal" type="checkbox" checked />
+                  <span>Persist settings locally on this browser</span>
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button class="btn primary" type="submit">Save Settings</button>
+                <button class="btn secondary" type="button" id="test-connection-btn">Test Connection</button>
+                <button class="btn secondary" type="button" id="reset-settings-btn">Reset</button>
+              </div>
+
+              <p class="form-note mono" id="llm-studio-feedback" aria-live="polite">
+                LLM Studio defaults to a local OpenAI-compatible endpoint.
+              </p>
+            </form>
+          </section>
+
+          <section class="main-card ai-news-panel" id="ai-prompt-engineering-panel" aria-labelledby="ai-news-title" hidden>
+            <div class="ai-news-header">
+              <div>
+                <h2 id="ai-news-title">AI Prompt Engineering Intelligence</h2>
+                <p class="section-copy">
+                  Curated, URL-validated tutorials and updates from major LLM providers. Cards are sourced from the web, validated, and analyzed for keyword-first retrieval.
+                </p>
+              </div>
+              <div class="ai-news-actions">
+                <button class="btn primary" type="button" id="ai-news-refresh-btn">Get New Articles, News, Research & Announcements</button>
+                <button class="btn secondary" type="button" id="ai-news-reload-btn">Reload Saved Cards</button>
+              </div>
+            </div>
+
+            <div class="tag-cloud-section">
+              <h3 class="section-sub">Keyword Cloud</h3>
+              <div class="tag-cloud" id="ai-news-keyword-cloud" aria-label="News keyword cloud"></div>
+            </div>
+
+            <div class="field-group ai-news-prompt-field">
+              <label for="ai-news-custom-prompt">Prompt for Get News</label>
+              <textarea
+                class="text-field text-area"
+                id="ai-news-custom-prompt"
+                rows="8"
+                placeholder="Write the prompt that Get News should use. You can include placeholders [FECHA_INICIO], [FECHA_FIN], and [CONTEXTO_VALIDADO]."
+              ></textarea>
+              <div class="ai-news-prompt-actions">
+                <button class="btn primary" type="button" id="ai-news-apply-btn">Apply</button>
+                <button class="btn secondary" type="button" id="ai-news-default-prompt-btn">Default Prompt</button>
+              </div>
+            </div>
+
+            <div class="ai-news-filters" aria-label="AI news filters">
+              <div class="field-group ai-news-filter-field">
+                <label for="ai-news-company-filter">Company</label>
+                <select class="text-field" id="ai-news-company-filter">
+                  <option value="">All companies</option>
+                </select>
+              </div>
+              <div class="field-group ai-news-filter-field">
+                <label for="ai-news-category-filter">Category</label>
+                <select class="text-field" id="ai-news-category-filter">
+                  <option value="">All categories</option>
+                </select>
+              </div>
+              <div class="field-group ai-news-filter-field">
+                <label for="ai-news-days-filter">Date Range</label>
+                <select class="text-field" id="ai-news-days-filter">
+                  <option value="">All time</option>
+                  <option value="7">Last 7 days</option>
+                  <option value="15">Last 15 days</option>
+                  <option value="30">Last 30 days</option>
+                  <option value="90">Last 90 days</option>
+                  <option value="265">Last 265 days</option>
+                </select>
+              </div>
+              <div class="field-group ai-news-filter-field ai-news-search-field">
+                <label for="ai-news-search">Search</label>
+                <input class="text-field" id="ai-news-search" type="search" placeholder="Search title, summary or keywords..." />
+              </div>
+              <div class="ai-news-filter-buttons">
+                <button class="btn secondary" type="button" id="ai-news-clear-filters">Clear Filters</button>
+              </div>
+            </div>
+
+            <p class="form-note mono" id="ai-news-status" aria-live="polite">Ready to discover and validate latest sources.</p>
+
+            <div class="ai-news-progress" id="ai-news-progress" hidden aria-live="polite">
+              <div class="ai-news-progress-label-row">
+                <span class="ai-news-progress-label" id="ai-news-progress-label">Background retrieval in progress...</span>
+                <div class="ai-news-progress-actions">
+                  <span class="ai-news-progress-percent" id="ai-news-progress-percent">0%</span>
+                  <button class="btn secondary" type="button" id="ai-news-cancel-btn" hidden>Cancel</button>
+                </div>
+              </div>
+              <div class="ai-news-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="ai-news-progress-track">
+                <div class="ai-news-progress-fill" id="ai-news-progress-fill"></div>
+              </div>
+            </div>
+
+            <div class="ai-news-cards" id="ai-news-cards" aria-label="AI news cards"></div>
+          </section>
+
+          <!-- ── Prompt Library ─────────────────────────────────────────── -->
+          <section class="main-card lib-panel" id="prompt-library-panel" aria-labelledby="lib-title" hidden>
+            <div class="lib-header">
+              <h2 id="lib-title">Prompt Library</h2>
+              <div class="lib-header-actions">
+                <input class="text-field lib-search" id="lib-search" type="search" placeholder="Search prompts..." aria-label="Search prompts" />
+                <button class="btn primary" type="button" id="lib-new-btn">+ New Prompt</button>
+              </div>
+            </div>
+
+            <!-- Tag cloud -->
+            <div class="tag-cloud-section">
+              <h3 class="section-sub">Tag Cloud</h3>
+              <div class="tag-cloud" id="tag-cloud" aria-label="Tag cloud"></div>
+            </div>
+
+            <!-- Chatbot -->
+            <details class="chat-collapsible" id="lib-chat-details" open>
+              <summary class="chat-summary">Test Prompt with Chatbot</summary>
+              <div class="chat-body">
+                <div class="chat-config-row">
+                  <div class="field-group">
+                    <label for="chat-system-prompt">System prompt</label>
+                    <textarea class="text-field text-area" id="chat-system-prompt" rows="2" placeholder="You are a helpful assistant..."></textarea>
+                  </div>
+                </div>
+                <div class="chat-messages" id="chat-messages" aria-live="polite" aria-label="Chat history"></div>
+                <div class="chat-input-row">
+                  <textarea class="text-field chat-input" id="chat-input" rows="4" placeholder="Type a prompt to test..." aria-label="User message"></textarea>
+                  <div class="chat-input-actions">
+                    <button class="btn primary" type="button" id="chat-send-btn">Send</button>
+                    <button class="btn secondary" type="button" id="chat-clear-btn">Clear</button>
+                    <button class="btn secondary" type="button" id="chat-save-btn">Save as Prompt</button>
+                  </div>
+                </div>
+                <p class="form-note mono" id="chat-status" aria-live="polite">Ready. LLM Studio settings are loaded from Settings page.</p>
+              </div>
+            </details>
+
+            <!-- Prompt cards grouped by tag -->
+            <div class="prompts-by-tag" id="prompts-by-tag" aria-label="Prompts grouped by tag"></div>
+          </section>
+
+          <!-- ── Help Library ──────────────────────────────────────────────── -->
+          <section class="main-card hl-panel" id="help-library-panel" aria-labelledby="help-library-title" hidden>
+            <div class="lib-header">
+              <h2 id="help-library-title">Help Library</h2>
+            </div>
+
+            <div class="hl-doc-list-wrap" aria-label="Help documents index">
+              <h3 class="section-sub" style="margin:0">Documents</h3>
+              <ul class="hl-doc-list" id="hl-doc-list"></ul>
+            </div>
+
+            <div class="hl-tab-bar" id="hl-tab-bar" role="tablist" aria-label="Help documents"></div>
+            <div class="hl-doc-content" id="hl-doc-content">
+              <p class="form-note mono" id="hl-status">Loading documentation...</p>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <!-- ── Tag popup modal ───────────────────────────────────────────────── -->
+      <div class="lib-modal-backdrop" id="lib-modal-backdrop" hidden aria-hidden="true"></div>
+      <div class="lib-modal" id="lib-modal" role="dialog" aria-modal="true" aria-labelledby="lib-modal-title" hidden>
+        <div class="lib-modal-titlebar" id="lib-modal-titlebar">
+          <span class="lib-modal-title" id="lib-modal-title">Tag</span>
+          <div class="lib-modal-controls">
+            <button class="icon-btn" id="lib-modal-min" type="button" title="Minimise" aria-label="Minimise">─</button>
+            <button class="icon-btn" id="lib-modal-max" type="button" title="Maximise" aria-label="Maximise">□</button>
+            <button class="icon-btn" id="lib-modal-close" data-close-popup="lib-modal" type="button" title="Close" aria-label="Close">✕</button>
+          </div>
+        </div>
+        <div class="lib-modal-body" id="lib-modal-body"></div>
+        <div class="lib-modal-resize-handle" id="lib-modal-resize" aria-hidden="true"></div>
+        <div class="lib-modal-size-bar">
+          <span class="lib-modal-size-label">Window size:</span>
+          <button class="btn secondary lib-size-btn" data-size="small">Small</button>
+          <button class="btn secondary lib-size-btn" data-size="medium">Medium</button>
+          <button class="btn secondary lib-size-btn" data-size="large">Large</button>
+        </div>
+      </div>
+
+      <!-- ── Prompt edit / create modal ───────────────────────────────────── -->
+      <div class="lib-modal" id="prompt-edit-modal" role="dialog" aria-modal="true" aria-labelledby="prompt-edit-title" hidden>
+        <div class="lib-modal-titlebar" id="prompt-edit-titlebar">
+          <span class="lib-modal-title" id="prompt-edit-title">New Prompt</span>
+          <div class="lib-modal-controls">
+            <button class="icon-btn" id="prompt-edit-min" type="button" title="Minimise" aria-label="Minimise">─</button>
+            <button class="icon-btn" id="prompt-edit-max" type="button" title="Maximise" aria-label="Maximise">□</button>
+            <button class="icon-btn" id="prompt-edit-close" data-close-popup="prompt-edit-modal" type="button" title="Close" aria-label="Close">✕</button>
+          </div>
+        </div>
+        <div class="lib-modal-body">
+          <form id="prompt-edit-form" novalidate>
+            <input type="hidden" id="prompt-edit-id" value="" />
+            <div class="field-group" style="margin-bottom:12px">
+              <label for="prompt-edit-title-input">Title</label>
+              <input class="text-field" id="prompt-edit-title-input" type="text" placeholder="Prompt title" required />
+            </div>
+            <div class="field-group content-field" style="margin-bottom:12px">
+              <label for="prompt-edit-content">Content</label>
+              <textarea class="text-field text-area" id="prompt-edit-content" rows="10" placeholder="Prompt content..." required></textarea>
+            </div>
+            <div class="field-group" style="margin-bottom:12px">
+              <label for="prompt-edit-tags">Tags <span style="font-weight:400;color:#6b7280">(comma separated)</span></label>
+              <input class="text-field" id="prompt-edit-tags" type="text" placeholder="rag, chain-of-thought, production" />
+            </div>
+            <div class="form-actions">
+              <button class="btn primary" type="submit" id="prompt-edit-save">Save Prompt</button>
+              <button class="btn secondary" data-close-popup="prompt-edit-modal" type="button" id="prompt-edit-cancel">Cancel</button>
+            </div>
+            <p class="form-note mono" id="prompt-edit-feedback" aria-live="polite" style="margin-top:10px"></p>
+          </form>
+        </div>
+        <div class="lib-modal-resize-handle" id="prompt-edit-resize" aria-hidden="true"></div>
+        <div class="lib-modal-size-bar">
+          <span class="lib-modal-size-label">Window size:</span>
+          <button class="btn secondary lib-size-btn" data-size="small">Small</button>
+          <button class="btn secondary lib-size-btn" data-size="medium">Medium</button>
+          <button class="btn secondary lib-size-btn" data-size="large">Large</button>
+        </div>
+      </div>
+
+      <div class="lib-modal" id="window-popup-modal" role="dialog" aria-modal="true" aria-labelledby="window-popup-title" hidden>
+        <div class="lib-modal-titlebar" id="window-popup-titlebar">
+          <span class="lib-modal-title" id="window-popup-title">Notice</span>
+          <div class="lib-modal-controls">
+            <button class="icon-btn" id="window-popup-min" type="button" title="Minimise" aria-label="Minimise">─</button>
+            <button class="icon-btn" id="window-popup-max" type="button" title="Maximise" aria-label="Maximise">□</button>
+            <button class="icon-btn" id="window-popup-close" type="button" title="Close" aria-label="Close">✕</button>
+          </div>
+        </div>
+        <div class="lib-modal-body">
+          <div id="window-popup-body" class="window-popup-body"></div>
+          <div class="window-popup-actions" id="window-popup-actions"></div>
+        </div>
+        <div class="lib-modal-resize-handle" id="window-popup-resize" aria-hidden="true"></div>
+        <div class="lib-modal-size-bar">
+          <span class="lib-modal-size-label">Window size:</span>
+          <button class="btn secondary lib-size-btn" data-size="small">Small</button>
+          <button class="btn secondary lib-size-btn" data-size="medium">Medium</button>
+          <button class="btn secondary lib-size-btn" data-size="large">Large</button>
+        </div>
+      </div>
+
+      <footer class="app-footer" role="contentinfo" aria-live="polite">
+        <p id="status-text">Status: Ready</p>
+        <p class="mono" id="meta-text">No actions yet</p>
+      </footer>
+    </div>
+
+    <script src="/enterprise/app.js" defer></script>
+    <script>
+      /* Navigate to a section via ?section=<name> URL parameter.
+         Runs after DOMContentLoaded so app.js defer listeners are already attached. */
+      document.addEventListener('DOMContentLoaded', function () {
+        var sec = new URLSearchParams(location.search).get('section');
+        if (sec) {
+          var link = document.querySelector('.nav-link[data-section="' + sec + '"]');
+          if (link) { link.click(); }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,969 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompt Assistance — Agentic Prompt Engineering Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .pa-sidebar-chips { display:flex; flex-direction:column; gap:4px; }
+      .pa-chip {
+        padding:6px 10px; border-radius:8px; font-size:0.78rem; font-weight:600;
+        background:var(--surface-strong); border:1px solid var(--line);
+        cursor:pointer; text-align:left; color:var(--ink); transition:background 0.15s;
+      }
+      .pa-chip:hover { background:var(--accent); color:#fff; border-color:var(--accent); }
+      .pa-chip-group-label {
+        font-size:0.7rem; font-weight:700; color:var(--muted); text-transform:uppercase;
+        letter-spacing:.07em; margin:10px 0 4px; padding:0 2px;
+      }
+      .pa-chat-wrap {
+        display:flex; flex-direction:column; gap:0; height:100%;
+        border:1px solid var(--line); border-radius:14px; overflow:hidden;
+        background:var(--surface);
+      }
+      .pa-chat-header {
+        padding:16px 20px 12px; border-bottom:1px solid var(--line);
+        background:var(--surface-strong);
+      }
+      .pa-chat-header h3 { margin:0 0 2px; font-size:1rem; }
+      .pa-chat-header p { margin:0; font-size:0.82rem; color:var(--muted); }
+      .pa-chat-log {
+        flex:1; overflow-y:auto; padding:18px 20px; display:flex;
+        flex-direction:column; gap:14px; min-height:0;
+      }
+      .pa-msg { display:flex; flex-direction:column; gap:4px; max-width:88%; }
+      .pa-msg.user { align-self:flex-end; align-items:flex-end; }
+      .pa-msg.assistant { align-self:flex-start; align-items:flex-start; }
+      .pa-msg-bubble {
+        padding:10px 14px; border-radius:12px; font-size:0.9rem; line-height:1.55;
+        white-space:pre-wrap; word-break:break-word;
+      }
+      .pa-msg.user .pa-msg-bubble { background:var(--accent); color:#fff; border-bottom-right-radius:4px; }
+      .pa-msg.assistant .pa-msg-bubble { background:var(--surface-strong); border:1px solid var(--line); border-bottom-left-radius:4px; }
+      .pa-msg-label { font-size:0.72rem; color:var(--muted); font-weight:600; }
+      .pa-msg-copy {
+        font-size:0.72rem; font-family:inherit; font-weight:600; color:var(--muted);
+        background:none; border:none; cursor:pointer; padding:2px 6px; border-radius:6px;
+        transition:color 0.15s, background 0.15s; align-self:flex-start; margin-top:2px;
+      }
+      .pa-msg-copy:hover { color:var(--accent); background:var(--surface-strong); }
+      .pa-suggestion-chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+      .pa-suggestion-chip {
+        padding:4px 10px; border-radius:20px; font-size:0.78rem; font-weight:600;
+        background:transparent; border:1px solid var(--accent); color:var(--accent);
+        cursor:pointer; transition:all 0.15s;
+      }
+      .pa-suggestion-chip:hover { background:var(--accent); color:#fff; }
+      .pa-input-row {
+        display:flex; gap:10px; padding:14px 16px; border-top:1px solid var(--line);
+        background:var(--surface-strong); align-items:flex-end;
+      }
+      .pa-input-row textarea {
+        flex:1; border:1px solid var(--line); border-radius:10px; padding:10px 13px;
+        font-family:inherit; font-size:0.9rem; resize:none; min-height:44px; max-height:140px;
+        background:#fff; color:var(--ink); line-height:1.5; outline:none;
+      }
+      .pa-input-row textarea:focus { border-color:var(--accent); }
+      .pa-generate-btn {
+        display:flex; align-items:center; gap:8px; padding:10px 18px;
+        background:linear-gradient(135deg, #7c3aed, #4f46e5); color:#fff;
+        border:none; border-radius:10px; font-family:inherit; font-size:0.88rem;
+        font-weight:700; cursor:pointer; transition:opacity 0.15s; white-space:nowrap;
+      }
+      .pa-generate-btn:hover { opacity:0.88; }
+      .pa-generate-btn:disabled { opacity:0.45; cursor:not-allowed; }
+      .pa-output-section {
+        border-top:1px solid var(--line); padding:16px 20px;
+        background:var(--surface-strong);
+      }
+      .pa-output-header {
+        display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;
+      }
+      .pa-output-header h4 { margin:0; font-size:0.93rem; }
+      .pa-output-pre {
+        background:#fff; border:1px solid var(--line); border-radius:10px;
+        padding:14px 16px; font-family:'IBM Plex Mono',monospace; font-size:0.82rem;
+        line-height:1.6; white-space:pre-wrap; word-break:break-word;
+        max-height:320px; overflow-y:auto; color:var(--ink);
+      }
+      .pa-metrics { display:flex; gap:16px; flex-wrap:wrap; font-size:0.78rem; color:var(--muted); padding:8px 20px 0; }
+      .pa-metrics strong { color:var(--ink); }
+      .pa-thinking { font-style:italic; color:var(--muted); font-size:0.85rem; }
+      /* LLM Settings panel reuse */
+      .settings-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px; }
+      @media(max-width:600px){ .settings-grid { grid-template-columns:1fr; } }
+      .field-input {
+        width:100%; border:1px solid var(--line); border-radius:10px;
+        background:#fff; padding:9px 12px; color:var(--ink);
+        font:inherit; font-size:0.93rem; box-sizing:border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">AI Prompt Engineering Companion</p>
+          <h1>Prompt Assistance</h1>
+        </div>
+        <div class="header-controls">
+          <button id="llm-settings-toggle" class="ghost-btn" type="button">&#9881; LLM Settings</button>
+          <a href="agent-builder.html" class="ghost-btn" style="text-decoration:none;">&#8592; Agent Builder</a>
+        </div>
+      </header>
+
+      <div class="workspace-layout">
+        <aside class="sidebar">
+          <h2>Patterns</h2>
+          <p style="margin:0 0 8px;font-size:0.78rem;color:var(--muted);">Click to inject pattern context into your next message.</p>
+          <div class="pa-sidebar-chips">
+            <div class="pa-chip-group-label">Core</div>
+            <button class="pa-chip" data-inject="Tell me more about Foundations patterns (roles, constraints, few-shot examples).">Foundations</button>
+            <button class="pa-chip" data-inject="Tell me more about Reasoning Patterns (chain-of-thought, tree-of-thought, self-consistency).">Reasoning Patterns</button>
+            <button class="pa-chip" data-inject="Tell me more about Action & Tool Use patterns (ReAct, tool selection, structured output).">Action &amp; Tool Use</button>
+            <button class="pa-chip" data-inject="Tell me more about Agent Architectures (single-agent, orchestrator-worker, blackboard).">Agent Architectures</button>
+            <button class="pa-chip" data-inject="Tell me more about Multi-Agent Collaboration patterns.">Multi-Agent Collab</button>
+            <button class="pa-chip" data-inject="Tell me more about Routing & Orchestration patterns.">Routing &amp; Orchestration</button>
+            <button class="pa-chip" data-inject="Tell me more about Feedback & Adaptation patterns.">Feedback &amp; Adaptation</button>
+            <button class="pa-chip" data-inject="Tell me more about Reflection & Self-Improvement patterns.">Reflection &amp; Self-Improvement</button>
+
+            <div class="pa-chip-group-label">RAG &amp; Retrieval</div>
+            <button class="pa-chip" data-inject="Tell me more about Embeddings and vector representations for RAG.">Embeddings</button>
+            <button class="pa-chip" data-inject="Tell me more about Vector Database patterns and indexing strategies.">Vector Databases</button>
+            <button class="pa-chip" data-inject="Tell me more about RAG Core patterns, chunking strategies, and retrieval.">RAG Core &amp; Chunking</button>
+            <button class="pa-chip" data-inject="Tell me more about RAG Prompt Patterns for context injection.">RAG Prompt Patterns</button>
+            <button class="pa-chip" data-inject="Tell me more about Agentic RAG patterns and Self-RAG / CRAG.">Agentic RAG</button>
+
+            <div class="pa-chip-group-label">Techniques</div>
+            <button class="pa-chip" data-inject="Tell me more about Planning Patterns (Plan-and-Execute, ReAct, ReWOO, HTN, Iterative Replanning).">Planning Patterns</button>
+            <button class="pa-chip" data-inject="Tell me more about Memory Patterns (Sliding Window, Vector Store, Episodic, MemGPT).">Memory Patterns</button>
+            <button class="pa-chip" data-inject="Tell me more about Control Flow Patterns (bounded loops, budget tracking, checkpointing, HITL).">Control Flow</button>
+            <button class="pa-chip" data-inject="Tell me more about Safety & Guardrails patterns (input filtering, output validation, PII, audit logging).">Safety &amp; Guardrails</button>
+            <button class="pa-chip" data-inject="Tell me more about Optimization Patterns (prompt caching, model cascading, parallel tool calls).">Optimization</button>
+            <button class="pa-chip" data-inject="Tell me more about Evaluation Patterns (LLM-as-judge, RAGAS, regression suites, A/B testing).">Evaluation</button>
+            <button class="pa-chip" data-inject="Tell me more about Communication & Coordination patterns (MCP, async queues, distributed tracing).">Communication &amp; Coordination</button>
+            <button class="pa-chip" data-inject="Tell me more about Emerging 2026 Patterns (reasoning model dispatch, sub-agent spawning, observation compression).">Emerging 2026</button>
+          </div>
+        </aside>
+
+        <main class="main-panel" style="display:flex;flex-direction:column;gap:14px;padding:20px;overflow:hidden;">
+          <!-- LLM Settings panel -->
+          <section id="llm-settings-panel" hidden style="border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--surface-strong);flex-shrink:0;">
+            <div>
+              <h3 style="margin:0 0 4px;">&#9881; LLM Settings</h3>
+              <p style="margin:0;font-size:0.82rem;color:var(--muted);">Configuración compartida entre todas las páginas del lab.</p>
+            </div>
+            <div class="settings-grid">
+              <div class="builder-field" style="margin:0;">
+                <label for="llm-base-url">Base URL</label>
+                <input type="url" id="llm-base-url" class="field-input" placeholder="http://localhost:1234/v1" />
+              </div>
+              <div class="builder-field" style="margin:0;">
+                <label for="llm-model">Modelo</label>
+                <input type="text" id="llm-model" class="field-input" placeholder="qwen2.5-7b-instruct" />
+              </div>
+              <div class="builder-field" style="margin:0;">
+                <label for="llm-api-key">API Key <span style="color:var(--muted);font-weight:400;">(opcional)</span></label>
+                <input type="password" id="llm-api-key" class="field-input" placeholder="Vacío para LLM local" />
+              </div>
+              <div class="builder-field" style="margin:0;">
+                <label for="llm-timeout">Timeout (ms) <span id="llm-timeout-hint" style="color:var(--muted);font-weight:400;font-size:0.8rem;"></span></label>
+                <input type="number" id="llm-timeout" class="field-input" placeholder="120000" min="5000" step="5000" />
+              </div>
+              <div class="builder-field" style="margin:0;grid-column:1/-1;">
+                <label for="llm-system-extra">System Prompt extra (añadido al del asistente)</label>
+                <textarea id="llm-system-extra" class="field-input" rows="2" style="resize:vertical;" placeholder="Instrucciones adicionales para todos los chats..."></textarea>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:14px;align-items:center;">
+              <button id="llm-settings-save" class="solid-btn" type="button">Guardar configuración</button>
+              <button id="llm-settings-test" class="ghost-btn" type="button">Probar conexión</button>
+              <span id="llm-settings-status" style="font-size:0.82rem;color:var(--muted);"></span>
+            </div>
+          </section>
+
+          <!-- Chat area -->
+          <div class="pa-chat-wrap" style="flex:1;min-height:0;">
+            <div class="pa-chat-header">
+              <h3>Prompt Design Coach</h3>
+              <p>I'll help you design the best possible prompt through conversation. Describe your use case and I'll guide you.</p>
+            </div>
+            <div class="pa-metrics" id="pa-metrics" aria-live="polite">
+              <p>Input: <strong id="m-in">0</strong> tok</p>
+              <p>Output: <strong id="m-out">0</strong> tok</p>
+              <p>Total: <strong id="m-total">0</strong> tok</p>
+              <p>Cost: <strong id="m-cost">$0.0000</strong></p>
+            </div>
+            <div class="pa-chat-log" id="pa-chat-log" aria-live="polite"></div>
+
+            <!-- Generated prompt output -->
+            <div id="pa-output-section" class="pa-output-section" hidden>
+              <div class="pa-output-header">
+                <h4>&#10024; Generated Prompt</h4>
+                <div style="display:flex;gap:8px;">
+                  <button id="pa-copy-btn" class="ghost-btn" type="button">Copy</button>
+                  <button id="pa-clear-output-btn" class="ghost-btn" type="button">Clear</button>
+                </div>
+              </div>
+              <pre class="pa-output-pre" id="pa-output-pre"></pre>
+            </div>
+
+            <div class="pa-input-row">
+              <textarea id="pa-input" rows="2" placeholder="Describe your use case, goal, constraints, tools needed…"></textarea>
+              <button id="pa-send" class="solid-btn" type="button">Send</button>
+              <button id="pa-generate" class="pa-generate-btn" type="button" title="Generate the final optimized prompt based on our conversation">
+                &#10024; Generate Prompt
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <footer class="app-footer">
+        <p>Mode: <strong>Prompt Assistance</strong></p>
+        <p>Turns: <strong id="footer-turns">0</strong></p>
+        <p><button id="pa-new-chat" class="ghost-btn" type="button">+ New Conversation</button></p>
+      </footer>
+    </div>
+
+    <script>
+    // ─── Constants ────────────────────────────────────────────────────────────
+    const SETTINGS_KEY = "prompt-coach.llmStudioSettings";
+    const HISTORY_KEY  = "prompt-assistant.history";
+    const AVG_IN_COST  = 0.000002;
+    const AVG_OUT_COST = 0.000002;
+
+    // ─── LLM Settings ─────────────────────────────────────────────────────────
+    function getLlmSettings() {
+      try {
+        const raw = localStorage.getItem(SETTINGS_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          return {
+            baseUrl:      parsed.baseUrl      || "http://localhost:1234/v1",
+            model:        parsed.model        || "qwen2.5-7b-instruct",
+            apiKey:       parsed.apiKey       || "",
+            timeout:      parsed.timeout      || 120000,
+            systemPrompt: parsed.systemPrompt || ""
+          };
+        }
+      } catch {}
+      return { baseUrl:"http://localhost:1234/v1", model:"qwen2.5-7b-instruct", apiKey:"", timeout:120000, systemPrompt:"" };
+    }
+
+    function saveLlmSettings(obj) {
+      localStorage.setItem(SETTINGS_KEY, JSON.stringify(obj));
+    }
+
+    // ─── State ────────────────────────────────────────────────────────────────
+    let conversationHistory = [];
+    let totalInputTokens  = 0;
+    let totalOutputTokens = 0;
+
+    // ─── DOM refs ─────────────────────────────────────────────────────────────
+    const chatLog        = document.getElementById("pa-chat-log");
+    const chatInput      = document.getElementById("pa-input");
+    const sendBtn        = document.getElementById("pa-send");
+    const generateBtn    = document.getElementById("pa-generate");
+    const outputSection  = document.getElementById("pa-output-section");
+    const outputPre      = document.getElementById("pa-output-pre");
+    const copyBtn        = document.getElementById("pa-copy-btn");
+    const clearOutputBtn = document.getElementById("pa-clear-output-btn");
+    const footerTurns    = document.getElementById("footer-turns");
+    const newChatBtn     = document.getElementById("pa-new-chat");
+
+    // Settings panel refs
+    const settingsToggle    = document.getElementById("llm-settings-toggle");
+    const settingsPanel     = document.getElementById("llm-settings-panel");
+    const llmBaseUrlInput   = document.getElementById("llm-base-url");
+    const llmModelInput     = document.getElementById("llm-model");
+    const llmApiKeyInput    = document.getElementById("llm-api-key");
+    const llmTimeoutInput   = document.getElementById("llm-timeout");
+    const llmTimeoutHint    = document.getElementById("llm-timeout-hint");
+    const llmSystemExtra    = document.getElementById("llm-system-extra");
+    const llmSettingsSave   = document.getElementById("llm-settings-save");
+    const llmSettingsTest   = document.getElementById("llm-settings-test");
+    const llmSettingsStatus = document.getElementById("llm-settings-status");
+
+    // Metrics
+    const mIn    = document.getElementById("m-in");
+    const mOut   = document.getElementById("m-out");
+    const mTotal = document.getElementById("m-total");
+    const mCost  = document.getElementById("m-cost");
+
+    // ─── System Prompt (full pattern knowledge) ───────────────────────────────
+    const COACH_SYSTEM_PROMPT = `You are an expert Prompt Engineering Coach specializing in agentic AI systems. Your goal is to help users design the best possible prompt through a guided conversation.
+
+YOUR ROLE:
+- Ask focused questions to understand the user's use case, goals, constraints, and requirements
+- Proactively suggest relevant patterns and techniques from your comprehensive knowledge base
+- Refine the design through dialogue
+- When the conversation is sufficiently detailed, synthesize an optimized, production-ready prompt
+
+CONVERSATION APPROACH:
+1. Start by understanding: What is the task? Who/what is the agent? What inputs and outputs are expected?
+2. Probe for: constraints, tools available, quality requirements, latency/cost concerns, safety needs
+3. After each user message, suggest 2-3 specific patterns that apply to their case (with brief rationale)
+4. Ask one focused follow-up question to refine the design
+5. Keep building context across the conversation
+
+WHEN GENERATING THE FINAL PROMPT (triggered by "generate" command):
+- Synthesize everything discussed into a complete, structured, production-ready prompt
+- Include: Role definition, Context, Instructions, Constraints, Output format, Examples (if applicable)
+- Apply the most relevant patterns naturally within the prompt structure
+- Make it immediately usable — no placeholders unless the user needs to fill them in
+
+═══════════════════════════════════════════════════════════════
+COMPLETE PATTERN KNOWLEDGE BASE
+═══════════════════════════════════════════════════════════════
+
+━━━ CORE PATTERN FAMILIES ━━━
+
+1. FOUNDATIONS
+Core elements: role definition, context setting, explicit constraints, few-shot examples, output format specification.
+Best for: any prompt — this is the baseline layer every prompt needs.
+Key techniques: System/User/Assistant roles, context priming, constraint lists, output schemas, few-shot exemplars.
+Template structure: [Role] You are a {{role}}. [Context] {{background}}. [Task] {{task}}. [Constraints] {{constraints}}. [Output] {{format}}.
+
+2. REASONING PATTERNS
+Core elements: chain-of-thought (CoT), tree-of-thought (ToT), self-consistency sampling, step-by-step decomposition.
+Best for: complex reasoning, math, multi-step analysis, tasks where accuracy matters more than speed.
+Key techniques:
+- Chain-of-Thought: "Think step by step before answering"
+- Tree-of-Thought: explore multiple reasoning branches, pick best
+- Self-Consistency: sample N answers, take majority vote
+- Least-to-Most: decompose into simpler subproblems solved in order
+Template: "Reason through this step by step. Show your work. Consider alternatives before committing to an answer."
+
+3. ACTION & TOOL USE
+Core elements: tool definitions, ReAct (Reason+Act) loop, structured tool call format, error handling.
+Best for: agents that call APIs, search the web, execute code, query databases.
+Key techniques: ReAct loop (Thought→Action→Observation), tool schemas, fallback handling, parallel tool calls.
+Template: [Tools available] {{tool_list}}. Think about which tool to use, then use it. Observe the result. Repeat until done.
+
+4. AGENT ARCHITECTURES
+Core elements: single-agent, orchestrator-worker, blackboard, pipeline, debate.
+Best for: choosing the right overall structure for a multi-step agentic system.
+Key techniques:
+- Single-agent: one LLM handles all steps — simple, low latency
+- Orchestrator-worker: one planner decomposes, specialized workers execute
+- Blackboard: agents read/write shared state; decoupled communication
+- Pipeline: sequential agents, each specialized for one stage
+- Debate: multiple agents propose + critique; judge synthesizes
+
+5. MULTI-AGENT COLLABORATION
+Core elements: agent roles, shared memory, handoff protocols, consensus mechanisms.
+Best for: complex tasks that benefit from specialization or parallelism.
+Key techniques: Role specialization, round-robin critique, parallel subtask execution, shared artifact store.
+
+6. ROUTING & ORCHESTRATION
+Core elements: intent classification, complexity routing, conditional branching, fallback chains.
+Best for: systems that need to handle diverse query types efficiently.
+Key techniques: LLM-based intent classifier → route to specialized sub-prompt, complexity triage (simple→cheap model, complex→frontier model).
+
+7. FEEDBACK & ADAPTATION
+Core elements: critique loops, self-evaluation, human feedback integration, iterative refinement.
+Best for: quality-critical outputs where first-pass may be insufficient.
+Key techniques: Generate→Critique→Revise loop, rubric-based self-scoring, constitutional critique.
+
+8. REFLECTION & SELF-IMPROVEMENT
+Core elements: post-task reflection, capability gap analysis, prompt self-modification, meta-cognition.
+Best for: long-horizon agents, learning systems, quality improvement pipelines.
+Key techniques: After-action review, "What went wrong and why?", self-generated few-shot examples from successes.
+
+9. CAPSTONE LAB
+Core elements: combining multiple patterns into a production-ready agentic system.
+Best for: real-world deployments that need multiple pattern families working together.
+
+━━━ RAG & RETRIEVAL PATTERNS ━━━
+
+10. EMBEDDINGS
+Core elements: text-to-vector conversion, similarity search, embedding model selection.
+Best for: semantic search, deduplication, clustering, retrieval tasks.
+Key techniques: OpenAI text-embedding-3-small/large, Cohere embed-v3, sentence-transformers; cosine similarity; chunking before embedding.
+
+11. VECTOR DATABASES
+Core elements: index types (HNSW, IVF), filtering, hybrid search (dense+sparse), scalability.
+Best for: production RAG systems with large corpora.
+Key techniques: Pinecone, Qdrant, Weaviate, pgvector; metadata filtering; namespace partitioning; HNSW for fast approximate search.
+
+12. RAG CORE & CHUNKING
+Core elements: document chunking, overlap, chunk size tuning, retrieval pipeline.
+Best for: any system that grounds LLM responses in external knowledge.
+Key techniques: Fixed-size chunks (256-512 tokens), semantic chunking, hierarchical chunking, 10-20% overlap, top-k retrieval (k=3-8).
+
+13. RAG PROMPT PATTERNS
+Core elements: context injection, citation instructions, faithfulness constraints, source attribution.
+Best for: factual Q&A, document analysis, knowledge-grounded generation.
+Template: "Answer the question using ONLY the provided context. If the context doesn't contain the answer, say 'I don't know.' Always cite your sources. Context: {{retrieved_chunks}}. Question: {{question}}."
+
+14. AGENTIC RAG & EVALUATION
+Core elements: query decomposition, multi-hop retrieval, Self-RAG, CRAG, iterative retrieval.
+Best for: complex questions requiring multiple retrieval rounds or query reformulation.
+Key techniques:
+- Self-RAG: agent decides when to retrieve and evaluates retrieved content
+- CRAG (Corrective RAG): low-confidence retrieval triggers web search fallback
+- HyDE: generate hypothetical answer to improve query embedding
+- Query decomposition: break complex questions into sub-queries
+
+━━━ ADVANCED TECHNIQUE FAMILIES (from techniques.html) ━━━
+
+15. PLANNING PATTERNS
+Key techniques: Plan-and-Execute, ReAct, ReWOO, Goal Decomposition & HTN, Iterative Replanning.
+- Plan-and-Execute: create full plan upfront, then execute each step
+- ReAct: interleave reasoning and acting in a loop (Thought/Action/Observation)
+- ReWOO: separate planning from execution; plan references future observations symbolically
+- HTN (Hierarchical Task Network): decompose goals into sub-goals recursively
+- Iterative Replanning: re-plan when unexpected observations occur
+Template structure: [Goal] → [Plan] → [Execute Step] → [Observe] → [Replan if needed] → [Complete]
+
+16. MEMORY PATTERNS
+Key techniques: Sliding Window Context, Vector Store Memory, Episodic & Semantic Memory, Summarization Memory, MemGPT/Hierarchical Paging.
+- Sliding Window: keep last N turns in context; drop oldest
+- Vector Store: embed past interactions; retrieve relevant ones by similarity
+- Episodic: store specific past events; recall by event type or recency
+- Semantic: store distilled facts/knowledge; recall by concept
+- Summarization: compress old context into running summary to free context window
+- MemGPT: hierarchical memory paging (working memory → archival → recall)
+
+17. RETRIEVAL / AGENTIC RAG
+Key techniques: Hybrid Retrieval, Reranking, HyDE, Query Decomposition, Self-RAG, CRAG.
+- Hybrid Retrieval: combine dense (semantic) + sparse (BM25) retrieval; reciprocal rank fusion
+- Reranking: post-retrieval rerank with cross-encoder (Cohere Rerank, BGE reranker)
+- HyDE: generate hypothetical ideal document, embed that for retrieval
+- Query Decomposition: decompose complex queries into sub-queries; retrieve for each
+- Self-RAG: agent evaluates need to retrieve; judges relevance and faithfulness of retrieved docs
+- CRAG: if retrieval confidence < threshold, trigger web search as fallback
+
+18. CONTROL FLOW PATTERNS
+Key techniques: Bounded Loops, Budget Tracking, Checkpointing, Human-in-the-Loop Gates, Idempotent Retries.
+- Bounded Loops: max iteration cap with fallback — prevents infinite agent loops
+- Budget Tracking: track token/cost/time budget per step; stop before exceeding
+- Checkpointing: save agent state after each step; resume from checkpoint on failure
+- Human-in-the-Loop Gates: pause for human approval at high-stakes decision points
+- Idempotent Retries: retry tool calls safely; use idempotency keys for write operations
+
+19. SAFETY & GUARDRAILS
+Key techniques: Input Filtering & Injection Defense, Output Validation & Schema Checks, PII/Secret Detection, Allow-listing & Permission Scoping, Audit Logging & Red Teaming.
+- Input filtering: block prompt injections, off-scope queries, toxic content, PII before LLM
+- Output validation: schema check, content policy, confidence gating before returning response
+- PII detection: mask SSN, credit cards, emails before logging or including in context
+- Permission scoping: least-privilege tool access — only grant what the specific task needs
+- Audit logging: log input hash, output hash, tools called, latency for every interaction
+- Red teaming: test for prompt injection in tool responses, indirect injection in retrieved docs
+Template: [Input Gate] → [Scope Check] → [Execute with minimal permissions] → [Output Validation] → [Audit Log]
+
+20. OPTIMIZATION PATTERNS
+Key techniques: Prompt Caching (provider-side), Semantic Caching, Model Cascading & Tier Routing, Batch API Processing, Parallel Tool Calls.
+- Prompt Caching: mark static prefix with cache_control; up to 90% cost reduction on prefix
+- Semantic Caching: store recent responses; return for similar queries (cosine sim > 0.95)
+- Model Cascading: classify query complexity; route simple→cheap model, complex→frontier
+- Batch API: async batch jobs at ~50% discount for latency-tolerant workloads
+- Parallel Tool Calls: issue independent tool calls simultaneously; reduces latency 2-3×
+
+21. EVALUATION PATTERNS
+Key techniques: LLM-as-Judge with Rubric, Pairwise Comparison, RAGAS Metrics, Regression Suite & Trace Replay, Production Sampling & A/B Testing.
+- LLM-as-Judge: stronger/different model scores outputs on a rubric (0-3 per dimension)
+- Pairwise Comparison: show judge two responses; ask which is better; more reliable than absolute scoring
+- RAGAS (for RAG): Faithfulness, Answer Relevancy, Context Precision, Context Recall — four independent metrics
+- Regression Suite: curated production examples replayed against any new prompt version
+- Production Sampling: score 1-10% of live traffic automatically; detect distribution drift
+Key principle: always use a DIFFERENT model as judge than as generator; maintain held-out test set.
+
+22. COMMUNICATION & COORDINATION
+Key techniques: MCP (Model Context Protocol), Async Message Queues, Pub/Sub Broadcasting, Shared Blackboard State, Distributed Tracing.
+- MCP: JSON-RPC 2.0 standard for tool and resource access across all LLM providers
+- Async Queues: durable message queues (Redis Streams, RabbitMQ) for resilient agent handoffs
+- Pub/Sub: fan-out events to multiple subscriber agents simultaneously
+- Shared Blackboard: Redis or DB-backed shared state; use SETNX/compare-and-swap for locking
+- Distributed Tracing: propagate trace_id and span_id through every agent message (OpenTelemetry)
+
+23. EMERGING 2026 PATTERNS
+Key techniques: Reasoning Model Dispatch, Sub-Agent Spawning, Observation Compression, Critic Models, Constitutional Agents, Agent Sandboxes.
+- Reasoning Model Dispatch: route hard problems to o3/DeepSeek R1 reasoning models; simple tasks to fast models
+- Sub-Agent Spawning: orchestrator dynamically spawns and terminates specialized sub-agents at runtime
+- Observation Compression: compress long tool outputs before adding to context (summarize, extract key facts)
+- Critic Models: dedicated critic LLM evaluates generator output and provides structured feedback for revision
+- Constitutional Agents: agents that self-check outputs against a list of constitutional principles before returning
+
+═══════════════════════════════════════════════════════════════
+PATTERN SELECTION GUIDE
+═══════════════════════════════════════════════════════════════
+
+When to use which patterns (map user needs to patterns):
+
+TASK TYPE → SUGGESTED PATTERNS:
+- Simple Q&A or chatbot → Foundations + Memory Patterns + RAG Core
+- Multi-step research → Planning Patterns + Agentic RAG + Reflection
+- Code generation/execution → Action & Tool Use + Safety & Guardrails + Control Flow
+- Document analysis at scale → RAG Core + Optimization + Evaluation
+- Multi-agent pipeline → Agent Architectures + Communication & Coordination + Control Flow
+- Real-time assistant → Foundations + Memory (Sliding Window) + Optimization (caching)
+- Production system → Safety & Guardrails + Evaluation + Optimization + Control Flow
+- Complex reasoning → Reasoning Patterns (CoT/ToT) + Planning Patterns
+- High-volume processing → Optimization (cascading + caching + batch) + Evaluation
+
+QUALITY REQUIREMENTS → SUGGESTED PATTERNS:
+- Accuracy critical → Reasoning Patterns + Evaluation + Reflection
+- Safety critical → Safety & Guardrails + Control Flow (HITL) + Audit Logging
+- Cost sensitive → Optimization (caching + cascading) + Batch API
+- Low latency → Optimization (parallel tools + caching) + Model Cascading
+- Long-running tasks → Control Flow (checkpointing + budget) + Memory + Planning
+
+Always layer: Foundations (always) + domain-specific patterns + Safety (for production) + Evaluation (for quality).`;
+
+    // ─── LLM API ──────────────────────────────────────────────────────────────
+    function buildLlmEndpoint(baseUrl, route) {
+      const cleanBase = String(baseUrl || "").replace(/\/$/, "");
+      if (!cleanBase) return route;
+      return /v1$/i.test(cleanBase) ? cleanBase + route : cleanBase + "/v1" + route;
+    }
+
+    async function callLlm(messages, onChunk) {
+      const s = getLlmSettings();
+      const url = buildLlmEndpoint(s.baseUrl, "/chat/completions");
+      const headers = { "Content-Type": "application/json" };
+      if (s.apiKey) headers["Authorization"] = "Bearer " + s.apiKey;
+
+      const body = JSON.stringify({
+        model: s.model,
+        messages,
+        stream: true,
+        temperature: 0.7
+      });
+
+      const controller = new AbortController();
+      const timeoutMs = Number(s.timeout) || 120000;
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+
+      let inputTokens = 0, outputTokens = 0;
+
+      try {
+        const resp = await fetch(url, { method:"POST", headers, body, signal: controller.signal });
+        clearTimeout(timer);
+        if (!resp.ok) {
+          const text = await resp.text().catch(() => resp.statusText);
+          throw new Error("LLM API error " + resp.status + ": " + text);
+        }
+        const reader = resp.body.getReader();
+        const decoder = new TextDecoder();
+        let fullText = "";
+        let buffer = "";
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split("\n");
+          buffer = lines.pop();
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed || trimmed === "data: [DONE]") continue;
+            if (!trimmed.startsWith("data: ")) continue;
+            try {
+              const json = JSON.parse(trimmed.slice(6));
+              const delta = json.choices?.[0]?.delta?.content || "";
+              if (delta) { fullText += delta; onChunk(delta); }
+              if (json.usage) {
+                inputTokens  = json.usage.prompt_tokens     || 0;
+                outputTokens = json.usage.completion_tokens || 0;
+              }
+            } catch {}
+          }
+        }
+        if (!inputTokens) inputTokens = Math.ceil(messages.reduce((a, m) => a + m.content.length, 0) / 4);
+        if (!outputTokens) outputTokens = Math.ceil(fullText.length / 4);
+        return { text: fullText, inputTokens, outputTokens };
+      } catch (err) {
+        clearTimeout(timer);
+        if (err.name === "AbortError") throw new Error("LLM request timed out after " + Math.round(timeoutMs/1000) + "s. Increase timeout in LLM Settings.");
+        throw err;
+      }
+    }
+
+    // ─── Render helpers ───────────────────────────────────────────────────────
+    function attachCopyBtn(wrap, getBubble) {
+      const btn = document.createElement("button");
+      btn.className = "pa-msg-copy";
+      btn.textContent = "⎘ Copy";
+      btn.title = "Copy response as Markdown";
+      btn.addEventListener("click", () => {
+        const text = getBubble().textContent || "";
+        navigator.clipboard.writeText(text).then(() => {
+          btn.textContent = "Copied!";
+          setTimeout(() => btn.textContent = "⎘ Copy", 2000);
+        }).catch(() => {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.style.position = "fixed"; ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select(); document.execCommand("copy");
+          document.body.removeChild(ta);
+          btn.textContent = "Copied!";
+          setTimeout(() => btn.textContent = "⎘ Copy", 2000);
+        });
+      });
+      wrap.appendChild(btn);
+      return btn;
+    }
+
+    function appendMessage(role, text) {
+      const wrap = document.createElement("div");
+      wrap.className = "pa-msg " + role;
+      const label = document.createElement("span");
+      label.className = "pa-msg-label";
+      label.textContent = role === "user" ? "You" : "Coach";
+      const bubble = document.createElement("div");
+      bubble.className = "pa-msg-bubble";
+      bubble.textContent = text;
+      wrap.appendChild(label);
+      wrap.appendChild(bubble);
+      if (role === "assistant") attachCopyBtn(wrap, () => bubble);
+      chatLog.appendChild(wrap);
+      chatLog.scrollTop = chatLog.scrollHeight;
+      return bubble;
+    }
+
+    function appendThinking() {
+      const wrap = document.createElement("div");
+      wrap.className = "pa-msg assistant";
+      const label = document.createElement("span");
+      label.className = "pa-msg-label";
+      label.textContent = "Coach";
+      const bubble = document.createElement("div");
+      bubble.className = "pa-msg-bubble pa-thinking";
+      bubble.textContent = "Thinking…";
+      wrap.appendChild(label);
+      wrap.appendChild(bubble);
+      chatLog.appendChild(wrap);
+      chatLog.scrollTop = chatLog.scrollHeight;
+      return { wrap, bubble };
+    }
+
+    function addPatternSuggestions(patternNames) {
+      if (!patternNames || !patternNames.length) return;
+      const lastMsg = chatLog.querySelector(".pa-msg.assistant:last-child");
+      if (!lastMsg) return;
+      const chipsWrap = document.createElement("div");
+      chipsWrap.className = "pa-suggestion-chips";
+      patternNames.forEach(name => {
+        const chip = document.createElement("button");
+        chip.className = "pa-suggestion-chip";
+        chip.textContent = name;
+        chip.addEventListener("click", () => {
+          chatInput.value = "Tell me more about " + name + " and how it applies to my use case.";
+          chatInput.focus();
+        });
+        chipsWrap.appendChild(chip);
+      });
+      lastMsg.appendChild(chipsWrap);
+    }
+
+    function updateMetrics(inTok, outTok) {
+      totalInputTokens  += inTok;
+      totalOutputTokens += outTok;
+      mIn.textContent    = totalInputTokens.toLocaleString();
+      mOut.textContent   = totalOutputTokens.toLocaleString();
+      mTotal.textContent = (totalInputTokens + totalOutputTokens).toLocaleString();
+      mCost.textContent  = "$" + ((totalInputTokens * AVG_IN_COST) + (totalOutputTokens * AVG_OUT_COST)).toFixed(4);
+    }
+
+    function updateFooterTurns() {
+      const turns = conversationHistory.filter(m => m.role === "user").length;
+      footerTurns.textContent = turns;
+    }
+
+    // ─── Build system messages ─────────────────────────────────────────────────
+    function buildSystemMessages() {
+      const s = getLlmSettings();
+      let sysContent = COACH_SYSTEM_PROMPT;
+      if (s.systemPrompt && s.systemPrompt.trim()) sysContent += "\n\n" + s.systemPrompt;
+      return [{ role: "system", content: sysContent }];
+    }
+
+    // ─── Send message ─────────────────────────────────────────────────────────
+    async function sendMessage(userText) {
+      if (!userText.trim()) return;
+      setSendingState(true);
+
+      appendMessage("user", userText);
+      conversationHistory.push({ role: "user", content: userText });
+      updateFooterTurns();
+
+      const { wrap: thinkWrap, bubble: thinkBubble } = appendThinking();
+
+      try {
+        const messages = [...buildSystemMessages(), ...conversationHistory];
+        let fullText = "";
+        let started = false;
+
+        const result = await callLlm(messages, (delta) => {
+          if (!started) {
+            thinkBubble.className = "pa-msg-bubble";
+            thinkBubble.textContent = "";
+            started = true;
+          }
+          fullText += delta;
+          thinkBubble.textContent = fullText;
+          chatLog.scrollTop = chatLog.scrollHeight;
+        });
+
+        conversationHistory.push({ role: "assistant", content: result.text });
+        updateMetrics(result.inputTokens, result.outputTokens);
+        attachCopyBtn(thinkWrap, () => thinkBubble);
+
+        // Extract pattern suggestions from response
+        const patterns = extractSuggestedPatterns(result.text);
+        if (patterns.length) addPatternSuggestions(patterns);
+
+      } catch (err) {
+        thinkBubble.className = "pa-msg-bubble";
+        thinkBubble.textContent = "Error: " + err.message;
+        thinkBubble.style.background = "#fde8e8";
+        thinkBubble.style.borderColor = "#f5c6c6";
+      }
+
+      setSendingState(false);
+    }
+
+    function extractSuggestedPatterns(text) {
+      const allPatterns = [
+        "Foundations","Reasoning Patterns","Action & Tool Use","Agent Architectures",
+        "Multi-Agent Collaboration","Routing & Orchestration","Feedback & Adaptation",
+        "Reflection & Self-Improvement","Planning Patterns","Memory Patterns",
+        "RAG Core","Agentic RAG","Safety & Guardrails","Optimization Patterns",
+        "Evaluation Patterns","Communication & Coordination","Control Flow Patterns",
+        "Emerging 2026"
+      ];
+      return allPatterns.filter(p => text.includes(p)).slice(0, 4);
+    }
+
+    // ─── Generate final prompt ────────────────────────────────────────────────
+    async function generateFinalPrompt() {
+      if (conversationHistory.filter(m => m.role === "user").length < 1) {
+        alert("Please have a conversation first so I can understand your use case.");
+        return;
+      }
+      generateBtn.disabled = true;
+      generateBtn.textContent = "Generating…";
+
+      const generationRequest = {
+        role: "user",
+        content: `Based on everything we've discussed, please generate the complete, final, production-ready prompt for my use case.
+
+Format the output as follows:
+1. Start with "=== GENERATED PROMPT ===" on its own line
+2. Include the complete prompt with all components (role, context, instructions, constraints, output format, examples if needed)
+3. Apply all the relevant patterns we discussed, integrated naturally into the prompt
+4. End with "=== END PROMPT ===" on its own line
+5. After the closing marker, add a brief "PATTERNS APPLIED:" section listing which patterns are incorporated and where
+
+Make the prompt immediately copy-paste usable. Use {{placeholder}} syntax for any values the user needs to customize.`
+      };
+
+      const { wrap: thinkWrap, bubble: thinkBubble } = appendThinking();
+      chatLog.scrollTop = chatLog.scrollHeight;
+
+      try {
+        const messages = [...buildSystemMessages(), ...conversationHistory, generationRequest];
+        let fullText = "";
+        let started = false;
+
+        const result = await callLlm(messages, (delta) => {
+          if (!started) {
+            thinkBubble.className = "pa-msg-bubble";
+            thinkBubble.textContent = "";
+            started = true;
+          }
+          fullText += delta;
+          thinkBubble.textContent = fullText;
+          chatLog.scrollTop = chatLog.scrollHeight;
+        });
+
+        conversationHistory.push(generationRequest);
+        conversationHistory.push({ role: "assistant", content: result.text });
+        updateMetrics(result.inputTokens, result.outputTokens);
+        updateFooterTurns();
+        attachCopyBtn(thinkWrap, () => thinkBubble);
+
+        // Extract the prompt from the markers
+        const startIdx = result.text.indexOf("=== GENERATED PROMPT ===");
+        const endIdx   = result.text.indexOf("=== END PROMPT ===");
+        let extracted  = result.text;
+        if (startIdx !== -1 && endIdx !== -1) {
+          extracted = result.text.slice(startIdx + "=== GENERATED PROMPT ===".length, endIdx).trim();
+        } else if (startIdx !== -1) {
+          extracted = result.text.slice(startIdx + "=== GENERATED PROMPT ===".length).trim();
+        }
+
+        outputPre.textContent = extracted;
+        outputSection.hidden = false;
+        outputSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+      } catch (err) {
+        thinkBubble.className = "pa-msg-bubble";
+        thinkBubble.textContent = "Error generating prompt: " + err.message;
+        thinkBubble.style.background = "#fde8e8";
+      }
+
+      generateBtn.disabled = false;
+      generateBtn.textContent = "✨ Generate Prompt";
+    }
+
+    function setSendingState(sending) {
+      sendBtn.disabled = sending;
+      chatInput.disabled = sending;
+      generateBtn.disabled = sending;
+      sendBtn.textContent = sending ? "…" : "Send";
+    }
+
+    // ─── Auto-resize textarea ─────────────────────────────────────────────────
+    function enableAutoResize(el) {
+      if (!el) return;
+      el.addEventListener("input", () => {
+        el.style.height = "auto";
+        el.style.height = Math.min(el.scrollHeight, 140) + "px";
+      });
+    }
+    enableAutoResize(chatInput);
+
+    // ─── Settings panel ───────────────────────────────────────────────────────
+    function populateSettingsPanel() {
+      const s = getLlmSettings();
+      if (llmBaseUrlInput)  llmBaseUrlInput.value   = s.baseUrl;
+      if (llmModelInput)    llmModelInput.value      = s.model;
+      if (llmApiKeyInput)   llmApiKeyInput.value     = s.apiKey;
+      if (llmTimeoutInput)  { llmTimeoutInput.value = s.timeout; updateTimeoutHint(Number(s.timeout)); }
+      if (llmSystemExtra)   llmSystemExtra.value     = s.systemPrompt;
+    }
+
+    function updateTimeoutHint(ms) {
+      if (!llmTimeoutHint) return;
+      const secs = Math.round(ms / 1000);
+      llmTimeoutHint.textContent = "≈ " + secs + "s";
+    }
+
+    settingsToggle.addEventListener("click", () => {
+      settingsPanel.hidden = !settingsPanel.hidden;
+      if (!settingsPanel.hidden) populateSettingsPanel();
+    });
+
+    llmTimeoutInput && llmTimeoutInput.addEventListener("input", () => {
+      updateTimeoutHint(Number(llmTimeoutInput.value));
+    });
+
+    llmSettingsSave.addEventListener("click", () => {
+      saveLlmSettings({
+        baseUrl:      llmBaseUrlInput.value.trim()  || "http://localhost:1234/v1",
+        model:        llmModelInput.value.trim()    || "qwen2.5-7b-instruct",
+        apiKey:       llmApiKeyInput.value.trim()   || "",
+        timeout:      Number(llmTimeoutInput.value) || 120000,
+        systemPrompt: llmSystemExtra.value.trim()   || ""
+      });
+      llmSettingsStatus.textContent = "Saved.";
+      setTimeout(() => llmSettingsStatus.textContent = "", 2000);
+    });
+
+    llmSettingsTest.addEventListener("click", async () => {
+      llmSettingsStatus.textContent = "Testing…";
+      try {
+        const result = await callLlm(
+          [...buildSystemMessages(), { role:"user", content:"Respond with exactly: OK" }],
+          () => {}
+        );
+        llmSettingsStatus.textContent = result.text.includes("OK") ? "Connection OK." : "Connected (unexpected response: " + result.text.slice(0,40) + ")";
+      } catch (err) {
+        llmSettingsStatus.textContent = "Error: " + err.message;
+      }
+    });
+
+    // ─── Event listeners ──────────────────────────────────────────────────────
+    sendBtn.addEventListener("click", () => {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      chatInput.value = "";
+      chatInput.style.height = "auto";
+      sendMessage(text);
+    });
+
+    chatInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendBtn.click();
+      }
+    });
+
+    generateBtn.addEventListener("click", generateFinalPrompt);
+
+    copyBtn.addEventListener("click", () => {
+      const text = outputPre.textContent;
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => copyBtn.textContent = "Copy", 2000);
+      }).catch(() => {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select(); document.execCommand("copy");
+        document.body.removeChild(ta);
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => copyBtn.textContent = "Copy", 2000);
+      });
+    });
+
+    clearOutputBtn.addEventListener("click", () => {
+      outputSection.hidden = true;
+      outputPre.textContent = "";
+    });
+
+    newChatBtn.addEventListener("click", () => {
+      if (!confirm("Start a new conversation? Current chat will be cleared.")) return;
+      conversationHistory = [];
+      chatLog.innerHTML = "";
+      outputSection.hidden = true;
+      outputPre.textContent = "";
+      totalInputTokens = totalOutputTokens = 0;
+      updateMetrics(0, 0);
+      updateFooterTurns();
+      showWelcome();
+    });
+
+    // Pattern chips in sidebar
+    document.querySelectorAll(".pa-chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        const inject = chip.dataset.inject;
+        if (!inject) return;
+        chatInput.value = inject;
+        chatInput.focus();
+      });
+    });
+
+    // ─── Welcome message ──────────────────────────────────────────────────────
+    function showWelcome() {
+      const welcomeText = `Hello! I'm your Prompt Design Coach. I'll help you build the best possible prompt for your use case through conversation.
+
+To get started, tell me:
+1. What task or problem are you solving?
+2. Who (or what system) will use this prompt?
+3. What should the output look like?
+
+I have comprehensive knowledge of 23+ pattern families — from Foundations and Reasoning Patterns to Safety & Guardrails, Optimization, and Emerging 2026 Patterns. I'll suggest the most relevant ones as we talk.
+
+When you're ready, click "✨ Generate Prompt" and I'll synthesize everything into a production-ready prompt.`;
+
+      appendMessage("assistant", welcomeText);
+    }
+
+    // ─── Init ─────────────────────────────────────────────────────────────────
+    showWelcome();
+    </script>
+  </body>
+</html>

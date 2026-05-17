@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Knowledge Base - /kb</title>
+    <link rel="stylesheet" href="../../styles/kb.css" />
+  </head>
+  <body>
+    <a class="kb-skip-link" href="#kb-content">Skip to content</a>
+    <main class="kb-shell kb-phase4-shell">
+      <header class="kb-header">
+        <div>
+          <p class="kb-eyebrow">Agentic Prompt Engineering Lab</p>
+          <h1>AI Knowledge Base</h1>
+          <p class="kb-subtitle">Search articles, glossary terms, and FAQs in one place.</p>
+        </div>
+        <button id="open-palette" class="kb-shortcut" type="button" aria-label="Open knowledge search">
+          Search
+          <span>Ctrl/Cmd+K</span>
+        </button>
+      </header>
+
+      <section id="search-inline"></section>
+
+      <div class="kb-layout">
+        <aside id="category-nav" class="kb-left-pane"></aside>
+        <section class="kb-center-pane">
+          <div id="kb-breadcrumbs"></div>
+          <div id="kb-content"></div>
+        </section>
+        <aside class="kb-right-pane">
+          <div class="kb-panel">
+            <h2>Quick Links</h2>
+            <ul>
+              <li><a href="../glossary/index.html">Open glossary route</a></li>
+              <li><a href="../faq/index.html">Open FAQ route</a></li>
+              <li><a href="../admin/index.html">Open admin route</a></li>
+            </ul>
+          </div>
+          <div class="kb-panel kb-ask-panel">
+            <h2>Ask the KB</h2>
+            <p class="kb-muted">Grounded answer from top 3 matching articles.</p>
+            <label for="kb-ask-input" class="kb-search-label">Question</label>
+            <textarea id="kb-ask-input" class="kb-ask-input" rows="4" placeholder="Ask a question about AI/ML concepts..."></textarea>
+            <button id="kb-ask-submit" class="kb-open-btn" type="button">Ask</button>
+            <div id="kb-ask-output" class="kb-ask-output" aria-live="polite"></div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <div id="kb-palette" class="kb-palette" aria-hidden="true">
+      <div class="kb-palette-dialog" role="dialog" aria-modal="true" aria-label="Knowledge Base search">
+        <div class="kb-palette-top">
+          <h2>Search Knowledge Base</h2>
+          <button id="close-palette" class="kb-close" type="button" aria-label="Close search">Close</button>
+        </div>
+        <section id="search-overlay"></section>
+      </div>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

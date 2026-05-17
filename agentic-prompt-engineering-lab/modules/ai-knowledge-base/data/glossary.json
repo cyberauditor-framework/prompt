@@ -1,0 +1,382 @@
+﻿[
+    {
+        "term":  "Epoch",
+        "definition":  "One full pass of the training algorithm over the entire training dataset.",
+        "articleSlug":  "training-loop-fundamentals"
+    },
+    {
+        "term":  "Batch",
+        "definition":  "A subset of samples processed together before one optimizer step.",
+        "articleSlug":  "training-loop-fundamentals"
+    },
+    {
+        "term":  "Mini-batch",
+        "definition":  "A small batch used to trade off gradient quality and computation speed.",
+        "articleSlug":  "training-loop-fundamentals"
+    },
+    {
+        "term":  "Gradient Descent",
+        "definition":  "Optimization method that updates parameters in the direction of negative gradient.",
+        "articleSlug":  "training-loop-fundamentals"
+    },
+    {
+        "term":  "Backpropagation",
+        "definition":  "Algorithm for computing gradients through layered computational graphs.",
+        "articleSlug":  "training-loop-fundamentals"
+    },
+    {
+        "term":  "Overfitting",
+        "definition":  "When a model memorizes training data and fails to generalize to new data.",
+        "articleSlug":  "evaluation-metrics"
+    },
+    {
+        "term":  "Underfitting",
+        "definition":  "When a model is too simple to capture meaningful structure in data.",
+        "articleSlug":  "model-selection"
+    },
+    {
+        "term":  "Regularization",
+        "definition":  "Techniques that constrain model complexity to improve generalization.",
+        "articleSlug":  "training-loop-fundamentals"
+    },
+    {
+        "term":  "Dropout",
+        "definition":  "Training technique that randomly drops units to reduce co-adaptation.",
+        "articleSlug":  "training-loop-fundamentals"
+    },
+    {
+        "term":  "Learning Rate",
+        "definition":  "Step size controlling how much parameters change at each update.",
+        "articleSlug":  "training-loop-fundamentals"
+    },
+    {
+        "term":  "Loss Function",
+        "definition":  "Objective that quantifies prediction error and drives optimization.",
+        "articleSlug":  "training-loop-fundamentals"
+    },
+    {
+        "term":  "Activation Function",
+        "definition":  "Non-linear function applied to neural network layer outputs.",
+        "articleSlug":  "convolutional-neural-networks"
+    },
+    {
+        "term":  "Embedding",
+        "definition":  "Dense vector representation of discrete entities like words or IDs.",
+        "articleSlug":  "transformers-and-attention-mechanism"
+    },
+    {
+        "term":  "Tokenization",
+        "definition":  "Process of splitting raw text into tokens for model input.",
+        "articleSlug":  "transformers-and-attention-mechanism"
+    },
+    {
+        "term":  "Attention",
+        "definition":  "Mechanism that weights context elements by relevance to each query.",
+        "articleSlug":  "transformers-and-attention-mechanism"
+    },
+    {
+        "term":  "Fine-tuning",
+        "definition":  "Adapting a pretrained model on task-specific data.",
+        "articleSlug":  "transfer-learning"
+    },
+    {
+        "term":  "Prompt",
+        "definition":  "Instructional text provided to a model at inference time.",
+        "articleSlug":  "transformers-and-attention-mechanism"
+    },
+    {
+        "term":  "Inference",
+        "definition":  "Using a trained model to produce predictions on new data.",
+        "articleSlug":  "deployment-monitoring"
+    },
+    {
+        "term":  "Latency",
+        "definition":  "Time required to return a prediction after receiving input.",
+        "articleSlug":  "deployment-monitoring"
+    },
+    {
+        "term":  "Throughput",
+        "definition":  "Number of predictions processed per time unit.",
+        "articleSlug":  "deployment-monitoring"
+    },
+    {
+        "term":  "FLOPs",
+        "definition":  "Floating-point operations used as a rough compute-effort proxy.",
+        "articleSlug":  "quantization"
+    },
+    {
+        "term":  "Batch Normalization",
+        "definition":  "Layer normalization of activations within mini-batches.",
+        "articleSlug":  "convolutional-neural-networks"
+    },
+    {
+        "term":  "Cross-validation",
+        "definition":  "Resampling strategy for estimating model performance robustness.",
+        "articleSlug":  "evaluation-metrics"
+    },
+    {
+        "term":  "Train/Validation/Test Split",
+        "definition":  "Partitioning data to train, tune, and evaluate models without leakage.",
+        "articleSlug":  "data-preparation"
+    },
+    {
+        "term":  "Bias",
+        "definition":  "Systematic error component due to restrictive assumptions.",
+        "articleSlug":  "model-selection"
+    },
+    {
+        "term":  "Variance",
+        "definition":  "Sensitivity of model predictions to data fluctuations.",
+        "articleSlug":  "model-selection"
+    },
+    {
+        "term":  "Precision",
+        "definition":  "Fraction of predicted positives that are truly positive.",
+        "articleSlug":  "evaluation-metrics"
+    },
+    {
+        "term":  "Recall",
+        "definition":  "Fraction of actual positives that are correctly identified.",
+        "articleSlug":  "evaluation-metrics"
+    },
+    {
+        "term":  "F1 Score",
+        "definition":  "Harmonic mean of precision and recall for imbalanced tasks.",
+        "articleSlug":  "evaluation-metrics"
+    },
+    {
+        "term":  "ROC-AUC",
+        "definition":  "Area under ROC curve measuring ranking quality across thresholds.",
+        "articleSlug":  "evaluation-metrics"
+    },
+    {
+        "term":  "Confusion Matrix",
+        "definition":  "Table of true/false positives/negatives by class.",
+        "articleSlug":  "evaluation-metrics"
+    },
+    {
+        "term":  "Feature Engineering",
+        "definition":  "Transforming raw data into predictive inputs for models.",
+        "articleSlug":  "data-preparation"
+    },
+    {
+        "term":  "Normalization",
+        "definition":  "Rescaling features to comparable ranges for stable optimization.",
+        "articleSlug":  "data-preparation"
+    },
+    {
+        "term":  "Standardization",
+        "definition":  "Centering and scaling features to zero mean and unit variance.",
+        "articleSlug":  "data-preparation"
+    },
+    {
+        "term":  "Outlier",
+        "definition":  "Observation that strongly deviates from typical data distribution.",
+        "articleSlug":  "data-preparation"
+    },
+    {
+        "term":  "Data Drift",
+        "definition":  "Shift in production input distribution relative to training data.",
+        "articleSlug":  "deployment-monitoring"
+    },
+    {
+        "term":  "Model Drift",
+        "definition":  "Degradation in prediction quality over time due to environment change.",
+        "articleSlug":  "deployment-monitoring"
+    },
+    {
+        "term":  "Retraining",
+        "definition":  "Updating model parameters with fresher or broader data.",
+        "articleSlug":  "deployment-monitoring"
+    },
+    {
+        "term":  "Concept Drift",
+        "definition":  "Change in relationship between inputs and target labels.",
+        "articleSlug":  "deployment-monitoring"
+    },
+    {
+        "term":  "Baseline Model",
+        "definition":  "Simple benchmark used to contextualize advanced model gains.",
+        "articleSlug":  "model-selection"
+    },
+    {
+        "term":  "Hyperparameter",
+        "definition":  "External configuration controlling model structure or training behavior.",
+        "articleSlug":  "hyperparameter-tuning"
+    },
+    {
+        "term":  "Grid Search",
+        "definition":  "Exhaustive evaluation over predefined hyperparameter combinations.",
+        "articleSlug":  "hyperparameter-tuning"
+    },
+    {
+        "term":  "Random Search",
+        "definition":  "Sampling-based hyperparameter exploration over search space.",
+        "articleSlug":  "hyperparameter-tuning"
+    },
+    {
+        "term":  "Bayesian Optimization",
+        "definition":  "Sequential model-based search balancing exploration and exploitation.",
+        "articleSlug":  "hyperparameter-tuning"
+    },
+    {
+        "term":  "Early Stopping",
+        "definition":  "Stopping training when validation performance stops improving.",
+        "articleSlug":  "training-loop-fundamentals"
+    },
+    {
+        "term":  "Ensemble",
+        "definition":  "Combining multiple models to improve accuracy or robustness.",
+        "articleSlug":  "random-forest"
+    },
+    {
+        "term":  "Bagging",
+        "definition":  "Ensemble method training independent learners on bootstrapped samples.",
+        "articleSlug":  "random-forest"
+    },
+    {
+        "term":  "Boosting",
+        "definition":  "Sequential ensemble approach emphasizing previously mispredicted examples.",
+        "articleSlug":  "model-selection"
+    },
+    {
+        "term":  "Kernel Trick",
+        "definition":  "Implicit mapping enabling linear separators in transformed space.",
+        "articleSlug":  "support-vector-machines"
+    },
+    {
+        "term":  "Margin",
+        "definition":  "Distance between decision boundary and nearest training points.",
+        "articleSlug":  "support-vector-machines"
+    },
+    {
+        "term":  "Centroid",
+        "definition":  "Mean vector representing a cluster center in k-means.",
+        "articleSlug":  "k-means-clustering"
+    },
+    {
+        "term":  "Explained Variance",
+        "definition":  "Fraction of total variance captured by selected components.",
+        "articleSlug":  "principal-component-analysis"
+    },
+    {
+        "term":  "Policy",
+        "definition":  "Mapping from states to actions in reinforcement learning.",
+        "articleSlug":  "reinforcement-learning-overview"
+    },
+    {
+        "term":  "Value Function",
+        "definition":  "Expected long-term return from a state or state-action pair.",
+        "articleSlug":  "q-learning"
+    },
+    {
+        "term":  "Reward",
+        "definition":  "Scalar feedback signal defining task objective in RL.",
+        "articleSlug":  "reinforcement-learning-overview"
+    },
+    {
+        "term":  "Exploration",
+        "definition":  "Trying uncertain actions to discover better future returns.",
+        "articleSlug":  "reinforcement-learning-overview"
+    },
+    {
+        "term":  "Exploitation",
+        "definition":  "Choosing currently best-known action to maximize immediate return.",
+        "articleSlug":  "reinforcement-learning-overview"
+    },
+    {
+        "term":  "Replay Buffer",
+        "definition":  "Memory store of transitions sampled during DQN training.",
+        "articleSlug":  "deep-q-networks"
+    },
+    {
+        "term":  "Target Network",
+        "definition":  "Delayed copy of Q-network used to stabilize temporal-difference targets.",
+        "articleSlug":  "deep-q-networks"
+    },
+    {
+        "term":  "Policy Gradient",
+        "definition":  "Family of methods optimizing policy directly via gradient ascent.",
+        "articleSlug":  "proximal-policy-optimization"
+    },
+    {
+        "term":  "KL Divergence",
+        "definition":  "Measure of difference between probability distributions.",
+        "articleSlug":  "proximal-policy-optimization"
+    },
+    {
+        "term":  "Latent Space",
+        "definition":  "Compressed representation space learned by generative models.",
+        "articleSlug":  "variational-autoencoders"
+    },
+    {
+        "term":  "Mode Collapse",
+        "definition":  "GAN failure mode where generator outputs limited variety.",
+        "articleSlug":  "generative-adversarial-networks"
+    },
+    {
+        "term":  "Pruning",
+        "definition":  "Removing less important parameters to reduce model size and cost.",
+        "articleSlug":  "model-pruning"
+    },
+    {
+        "term":  "Quantization-aware Training",
+        "definition":  "Training with quantization effects simulated to preserve accuracy.",
+        "articleSlug":  "quantization"
+    },
+    {
+        "term":  "Distillation Temperature",
+        "definition":  "Softmax temperature controlling teacher-soft-target smoothness.",
+        "articleSlug":  "knowledge-distillation"
+    },
+    {
+        "term":  "Top-k Accuracy",
+        "definition":  "Metric counting prediction as correct if true label is in top-k outputs.",
+        "articleSlug":  "evaluation-metrics"
+    },
+    {
+        "term":  "Learning Curve",
+        "definition":  "Plot of model performance versus training iterations or dataset size.",
+        "articleSlug":  "training-loop-fundamentals"
+    },
+    {
+        "term":  "Label Leakage",
+        "definition":  "Use of information unavailable at prediction time, causing unrealistic validation scores.",
+        "articleSlug":  "data-preparation"
+    },
+    {
+        "term":  "Calibration",
+        "definition":  "Alignment between predicted probabilities and observed outcome frequencies.",
+        "articleSlug":  "evaluation-metrics"
+    },
+    {
+        "term":  "Champion-Challenger",
+        "definition":  "Deployment pattern where a current production model is continuously compared against alternatives.",
+        "articleSlug":  "deployment-monitoring"
+    },
+    {
+        "term":  "Feature Store",
+        "definition":  "System that centralizes, versions, and serves consistent features for training and inference.",
+        "articleSlug":  "data-preparation"
+    },
+    {
+        "term":  "Distillation Loss",
+        "definition":  "Objective term that encourages a student model to match teacher output distributions.",
+        "articleSlug":  "knowledge-distillation"
+    },
+    {
+        "term":  "Post-training Quantization",
+        "definition":  "Converting a trained model to lower precision for faster, smaller inference without retraining.",
+        "articleSlug":  "quantization"
+    },
+    {
+        "term":  "Pareto Frontier",
+        "definition":  "Set of solutions where improving one objective requires degrading another objective.",
+        "articleSlug":  "model-selection"
+    },
+    {
+        "term":  "Retrieval-Augmented Generation",
+        "definition":  "Technique that grounds model answers using retrieved documents at inference time.",
+        "articleSlug":  "transformers-and-attention-mechanism"
+    }
+]

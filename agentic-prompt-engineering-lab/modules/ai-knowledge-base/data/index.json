@@ -1,0 +1,1220 @@
+﻿{
+    "generated_at":  "2026-05-07",
+    "entries":  [
+                    {
+                        "id":  "article:supervised-learning-overview",
+                        "type":  "article",
+                        "slug":  "supervised-learning-overview",
+                        "title":  "Supervised Learning (overview)",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "supervised-learning",
+                                     "labels",
+                                     "prediction"
+                                 ],
+                        "text":  "TL;DR placeholder for Supervised Learning (overview)."
+                    },
+                    {
+                        "id":  "article:linear-regression",
+                        "type":  "article",
+                        "slug":  "linear-regression",
+                        "title":  "Linear Regression",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "regression",
+                                     "supervised-learning",
+                                     "baseline-model"
+                                 ],
+                        "text":  "TL;DR placeholder for Linear Regression."
+                    },
+                    {
+                        "id":  "article:decision-trees",
+                        "type":  "article",
+                        "slug":  "decision-trees",
+                        "title":  "Decision Trees",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "tree-models",
+                                     "classification",
+                                     "interpretability"
+                                 ],
+                        "text":  "TL;DR placeholder for Decision Trees."
+                    },
+                    {
+                        "id":  "article:random-forest",
+                        "type":  "article",
+                        "slug":  "random-forest",
+                        "title":  "Random Forest",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "ensemble",
+                                     "bagging",
+                                     "tabular-data"
+                                 ],
+                        "text":  "TL;DR placeholder for Random Forest."
+                    },
+                    {
+                        "id":  "article:support-vector-machines",
+                        "type":  "article",
+                        "slug":  "support-vector-machines",
+                        "title":  "Support Vector Machines (SVM)",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "svm",
+                                     "kernels",
+                                     "classification"
+                                 ],
+                        "text":  "TL;DR placeholder for Support Vector Machines (SVM)."
+                    },
+                    {
+                        "id":  "article:naive-bayes",
+                        "type":  "article",
+                        "slug":  "naive-bayes",
+                        "title":  "Naive Bayes",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "probabilistic-model",
+                                     "classification",
+                                     "nlp"
+                                 ],
+                        "text":  "TL;DR placeholder for Naive Bayes."
+                    },
+                    {
+                        "id":  "article:unsupervised-learning-overview",
+                        "type":  "article",
+                        "slug":  "unsupervised-learning-overview",
+                        "title":  "Unsupervised Learning (overview)",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "unsupervised-learning",
+                                     "structure-discovery",
+                                     "clustering"
+                                 ],
+                        "text":  "TL;DR placeholder for Unsupervised Learning (overview)."
+                    },
+                    {
+                        "id":  "article:k-means-clustering",
+                        "type":  "article",
+                        "slug":  "k-means-clustering",
+                        "title":  "K-means Clustering",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "clustering",
+                                     "centroids",
+                                     "unsupervised-learning"
+                                 ],
+                        "text":  "TL;DR placeholder for K-means Clustering."
+                    },
+                    {
+                        "id":  "article:apriori-algorithm",
+                        "type":  "article",
+                        "slug":  "apriori-algorithm",
+                        "title":  "Apriori Algorithm",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "association-rules",
+                                     "market-basket",
+                                     "unsupervised-learning"
+                                 ],
+                        "text":  "TL;DR placeholder for Apriori Algorithm."
+                    },
+                    {
+                        "id":  "article:principal-component-analysis",
+                        "type":  "article",
+                        "slug":  "principal-component-analysis",
+                        "title":  "Principal Component Analysis (PCA)",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "dimensionality-reduction",
+                                     "feature-space",
+                                     "unsupervised-learning"
+                                 ],
+                        "text":  "TL;DR placeholder for Principal Component Analysis (PCA)."
+                    },
+                    {
+                        "id":  "article:reinforcement-learning-overview",
+                        "type":  "article",
+                        "slug":  "reinforcement-learning-overview",
+                        "title":  "Reinforcement Learning (overview)",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "reinforcement-learning",
+                                     "agent",
+                                     "reward"
+                                 ],
+                        "text":  "TL;DR placeholder for Reinforcement Learning (overview)."
+                    },
+                    {
+                        "id":  "article:q-learning",
+                        "type":  "article",
+                        "slug":  "q-learning",
+                        "title":  "Q-Learning",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "reinforcement-learning",
+                                     "q-table",
+                                     "temporal-difference"
+                                 ],
+                        "text":  "TL;DR placeholder for Q-Learning."
+                    },
+                    {
+                        "id":  "article:deep-q-networks",
+                        "type":  "article",
+                        "slug":  "deep-q-networks",
+                        "title":  "Deep Q Networks (DQN)",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "reinforcement-learning",
+                                     "deep-learning",
+                                     "value-based-methods"
+                                 ],
+                        "text":  "TL;DR placeholder for Deep Q Networks (DQN)."
+                    },
+                    {
+                        "id":  "article:proximal-policy-optimization",
+                        "type":  "article",
+                        "slug":  "proximal-policy-optimization",
+                        "title":  "Proximal Policy Optimization (PPO)",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "reinforcement-learning",
+                                     "policy-gradient",
+                                     "stable-training"
+                                 ],
+                        "text":  "TL;DR placeholder for Proximal Policy Optimization (PPO)."
+                    },
+                    {
+                        "id":  "article:semi-supervised-learning",
+                        "type":  "article",
+                        "slug":  "semi-supervised-learning",
+                        "title":  "Semi-Supervised Learning",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "semi-supervised-learning",
+                                     "few-labels",
+                                     "pseudo-labeling"
+                                 ],
+                        "text":  "TL;DR placeholder for Semi-Supervised Learning."
+                    },
+                    {
+                        "id":  "article:self-supervised-learning",
+                        "type":  "article",
+                        "slug":  "self-supervised-learning",
+                        "title":  "Self-Supervised Learning",
+                        "category":  "learning-paradigms",
+                        "tags":  [
+                                     "self-supervised-learning",
+                                     "pretext-task",
+                                     "representation-learning"
+                                 ],
+                        "text":  "TL;DR placeholder for Self-Supervised Learning."
+                    },
+                    {
+                        "id":  "article:convolutional-neural-networks",
+                        "type":  "article",
+                        "slug":  "convolutional-neural-networks",
+                        "title":  "Convolutional Neural Networks (CNNs)",
+                        "category":  "deep-learning-architectures",
+                        "tags":  [
+                                     "computer-vision",
+                                     "cnn",
+                                     "image-models"
+                                 ],
+                        "text":  "TL;DR placeholder for Convolutional Neural Networks (CNNs)."
+                    },
+                    {
+                        "id":  "article:recurrent-neural-networks",
+                        "type":  "article",
+                        "slug":  "recurrent-neural-networks",
+                        "title":  "Recurrent Neural Networks (RNNs)",
+                        "category":  "deep-learning-architectures",
+                        "tags":  [
+                                     "sequence-modeling",
+                                     "rnn",
+                                     "time-series"
+                                 ],
+                        "text":  "TL;DR placeholder for Recurrent Neural Networks (RNNs)."
+                    },
+                    {
+                        "id":  "article:long-short-term-memory",
+                        "type":  "article",
+                        "slug":  "long-short-term-memory",
+                        "title":  "Long Short-Term Memory (LSTM)",
+                        "category":  "deep-learning-architectures",
+                        "tags":  [
+                                     "lstm",
+                                     "sequence-modeling",
+                                     "memory-cells"
+                                 ],
+                        "text":  "TL;DR placeholder for Long Short-Term Memory (LSTM)."
+                    },
+                    {
+                        "id":  "article:transformers-and-attention-mechanism",
+                        "type":  "article",
+                        "slug":  "transformers-and-attention-mechanism",
+                        "title":  "Transformers and Attention Mechanism",
+                        "category":  "deep-learning-architectures",
+                        "tags":  [
+                                     "transformers",
+                                     "attention",
+                                     "llms"
+                                 ],
+                        "text":  "TL;DR placeholder for Transformers and Attention Mechanism."
+                    },
+                    {
+                        "id":  "article:generative-adversarial-networks",
+                        "type":  "article",
+                        "slug":  "generative-adversarial-networks",
+                        "title":  "Generative Adversarial Networks (GANs)",
+                        "category":  "deep-learning-architectures",
+                        "tags":  [
+                                     "gan",
+                                     "generative-models",
+                                     "adversarial-training"
+                                 ],
+                        "text":  "TL;DR placeholder for Generative Adversarial Networks (GANs)."
+                    },
+                    {
+                        "id":  "article:variational-autoencoders",
+                        "type":  "article",
+                        "slug":  "variational-autoencoders",
+                        "title":  "Variational Autoencoders (VAEs)",
+                        "category":  "deep-learning-architectures",
+                        "tags":  [
+                                     "vae",
+                                     "generative-models",
+                                     "latent-space"
+                                 ],
+                        "text":  "TL;DR placeholder for Variational Autoencoders (VAEs)."
+                    },
+                    {
+                        "id":  "article:transfer-learning",
+                        "type":  "article",
+                        "slug":  "transfer-learning",
+                        "title":  "Transfer Learning",
+                        "category":  "optimization-and-efficiency",
+                        "tags":  [
+                                     "transfer-learning",
+                                     "fine-tuning",
+                                     "pretrained-models"
+                                 ],
+                        "text":  "TL;DR placeholder for Transfer Learning."
+                    },
+                    {
+                        "id":  "article:hyperparameter-tuning",
+                        "type":  "article",
+                        "slug":  "hyperparameter-tuning",
+                        "title":  "Hyperparameter Tuning (Grid Search, Random Search, Bayesian Optimization)",
+                        "category":  "optimization-and-efficiency",
+                        "tags":  [
+                                     "hyperparameter-tuning",
+                                     "bayesian-optimization",
+                                     "model-selection"
+                                 ],
+                        "text":  "TL;DR placeholder for Hyperparameter Tuning (Grid Search, Random Search, Bayesian Optimization)."
+                    },
+                    {
+                        "id":  "article:model-pruning",
+                        "type":  "article",
+                        "slug":  "model-pruning",
+                        "title":  "Model Pruning",
+                        "category":  "optimization-and-efficiency",
+                        "tags":  [
+                                     "pruning",
+                                     "model-compression",
+                                     "efficiency"
+                                 ],
+                        "text":  "TL;DR placeholder for Model Pruning."
+                    },
+                    {
+                        "id":  "article:quantization",
+                        "type":  "article",
+                        "slug":  "quantization",
+                        "title":  "Quantization",
+                        "category":  "optimization-and-efficiency",
+                        "tags":  [
+                                     "quantization",
+                                     "inference-optimization",
+                                     "edge-deployment"
+                                 ],
+                        "text":  "TL;DR placeholder for Quantization."
+                    },
+                    {
+                        "id":  "article:knowledge-distillation",
+                        "type":  "article",
+                        "slug":  "knowledge-distillation",
+                        "title":  "Knowledge Distillation",
+                        "category":  "optimization-and-efficiency",
+                        "tags":  [
+                                     "distillation",
+                                     "teacher-student",
+                                     "model-compression"
+                                 ],
+                        "text":  "TL;DR placeholder for Knowledge Distillation."
+                    },
+                    {
+                        "id":  "article:problem-definition",
+                        "type":  "article",
+                        "slug":  "problem-definition",
+                        "title":  "Problem Definition",
+                        "category":  "model-development-workflow",
+                        "tags":  [
+                                     "problem-framing",
+                                     "business-objective",
+                                     "scope"
+                                 ],
+                        "text":  "TL;DR placeholder for Problem Definition."
+                    },
+                    {
+                        "id":  "article:data-preparation",
+                        "type":  "article",
+                        "slug":  "data-preparation",
+                        "title":  "Data Preparation (cleaning, normalization, feature engineering)",
+                        "category":  "model-development-workflow",
+                        "tags":  [
+                                     "data-cleaning",
+                                     "normalization",
+                                     "feature-engineering"
+                                 ],
+                        "text":  "TL;DR placeholder for Data Preparation (cleaning, normalization, feature engineering)."
+                    },
+                    {
+                        "id":  "article:model-selection",
+                        "type":  "article",
+                        "slug":  "model-selection",
+                        "title":  "Model Selection",
+                        "category":  "model-development-workflow",
+                        "tags":  [
+                                     "model-selection",
+                                     "baseline",
+                                     "tradeoffs"
+                                 ],
+                        "text":  "TL;DR placeholder for Model Selection."
+                    },
+                    {
+                        "id":  "article:training-loop-fundamentals",
+                        "type":  "article",
+                        "slug":  "training-loop-fundamentals",
+                        "title":  "Training Loop Fundamentals",
+                        "category":  "model-development-workflow",
+                        "tags":  [
+                                     "training-loop",
+                                     "optimization",
+                                     "gradient-descent"
+                                 ],
+                        "text":  "TL;DR placeholder for Training Loop Fundamentals."
+                    },
+                    {
+                        "id":  "article:evaluation-metrics",
+                        "type":  "article",
+                        "slug":  "evaluation-metrics",
+                        "title":  "Evaluation Metrics (Accuracy, Precision, Recall, F1, ROC-AUC, confusion matrix)",
+                        "category":  "model-development-workflow",
+                        "tags":  [
+                                     "metrics",
+                                     "precision-recall",
+                                     "roc-auc"
+                                 ],
+                        "text":  "TL;DR placeholder for Evaluation Metrics (Accuracy, Precision, Recall, F1, ROC-AUC, confusion matrix)."
+                    },
+                    {
+                        "id":  "article:deployment-monitoring",
+                        "type":  "article",
+                        "slug":  "deployment-monitoring",
+                        "title":  "Deployment \u0026 Monitoring (data drift, model drift, retraining)",
+                        "category":  "model-development-workflow",
+                        "tags":  [
+                                     "deployment",
+                                     "monitoring",
+                                     "model-drift"
+                                 ],
+                        "text":  "TL;DR placeholder for Deployment \u0026 Monitoring (data drift, model drift, retraining)."
+                    },
+                    {
+                        "id":  "glossary:epoch",
+                        "type":  "glossary",
+                        "term":  "Epoch",
+                        "title":  "Epoch",
+                        "slug":  "training-loop-fundamentals",
+                        "text":  "One full pass of the training algorithm over the entire training dataset."
+                    },
+                    {
+                        "id":  "glossary:batch",
+                        "type":  "glossary",
+                        "term":  "Batch",
+                        "title":  "Batch",
+                        "slug":  "training-loop-fundamentals",
+                        "text":  "A subset of samples processed together before one optimizer step."
+                    },
+                    {
+                        "id":  "glossary:mini-batch",
+                        "type":  "glossary",
+                        "term":  "Mini-batch",
+                        "title":  "Mini-batch",
+                        "slug":  "training-loop-fundamentals",
+                        "text":  "A small batch used to trade off gradient quality and computation speed."
+                    },
+                    {
+                        "id":  "glossary:gradient-descent",
+                        "type":  "glossary",
+                        "term":  "Gradient Descent",
+                        "title":  "Gradient Descent",
+                        "slug":  "training-loop-fundamentals",
+                        "text":  "Optimization method that updates parameters in the direction of negative gradient."
+                    },
+                    {
+                        "id":  "glossary:backpropagation",
+                        "type":  "glossary",
+                        "term":  "Backpropagation",
+                        "title":  "Backpropagation",
+                        "slug":  "training-loop-fundamentals",
+                        "text":  "Algorithm for computing gradients through layered computational graphs."
+                    },
+                    {
+                        "id":  "glossary:overfitting",
+                        "type":  "glossary",
+                        "term":  "Overfitting",
+                        "title":  "Overfitting",
+                        "slug":  "evaluation-metrics",
+                        "text":  "When a model memorizes training data and fails to generalize to new data."
+                    },
+                    {
+                        "id":  "glossary:underfitting",
+                        "type":  "glossary",
+                        "term":  "Underfitting",
+                        "title":  "Underfitting",
+                        "slug":  "model-selection",
+                        "text":  "When a model is too simple to capture meaningful structure in data."
+                    },
+                    {
+                        "id":  "glossary:regularization",
+                        "type":  "glossary",
+                        "term":  "Regularization",
+                        "title":  "Regularization",
+                        "slug":  "training-loop-fundamentals",
+                        "text":  "Techniques that constrain model complexity to improve generalization."
+                    },
+                    {
+                        "id":  "glossary:dropout",
+                        "type":  "glossary",
+                        "term":  "Dropout",
+                        "title":  "Dropout",
+                        "slug":  "training-loop-fundamentals",
+                        "text":  "Training technique that randomly drops units to reduce co-adaptation."
+                    },
+                    {
+                        "id":  "glossary:learning-rate",
+                        "type":  "glossary",
+                        "term":  "Learning Rate",
+                        "title":  "Learning Rate",
+                        "slug":  "training-loop-fundamentals",
+                        "text":  "Step size controlling how much parameters change at each update."
+                    },
+                    {
+                        "id":  "glossary:loss-function",
+                        "type":  "glossary",
+                        "term":  "Loss Function",
+                        "title":  "Loss Function",
+                        "slug":  "training-loop-fundamentals",
+                        "text":  "Objective that quantifies prediction error and drives optimization."
+                    },
+                    {
+                        "id":  "glossary:activation-function",
+                        "type":  "glossary",
+                        "term":  "Activation Function",
+                        "title":  "Activation Function",
+                        "slug":  "convolutional-neural-networks",
+                        "text":  "Non-linear function applied to neural network layer outputs."
+                    },
+                    {
+                        "id":  "glossary:embedding",
+                        "type":  "glossary",
+                        "term":  "Embedding",
+                        "title":  "Embedding",
+                        "slug":  "transformers-and-attention-mechanism",
+                        "text":  "Dense vector representation of discrete entities like words or IDs."
+                    },
+                    {
+                        "id":  "glossary:tokenization",
+                        "type":  "glossary",
+                        "term":  "Tokenization",
+                        "title":  "Tokenization",
+                        "slug":  "transformers-and-attention-mechanism",
+                        "text":  "Process of splitting raw text into tokens for model input."
+                    },
+                    {
+                        "id":  "glossary:attention",
+                        "type":  "glossary",
+                        "term":  "Attention",
+                        "title":  "Attention",
+                        "slug":  "transformers-and-attention-mechanism",
+                        "text":  "Mechanism that weights context elements by relevance to each query."
+                    },
+                    {
+                        "id":  "glossary:fine-tuning",
+                        "type":  "glossary",
+                        "term":  "Fine-tuning",
+                        "title":  "Fine-tuning",
+                        "slug":  "transfer-learning",
+                        "text":  "Adapting a pretrained model on task-specific data."
+                    },
+                    {
+                        "id":  "glossary:prompt",
+                        "type":  "glossary",
+                        "term":  "Prompt",
+                        "title":  "Prompt",
+                        "slug":  "transformers-and-attention-mechanism",
+                        "text":  "Instructional text provided to a model at inference time."
+                    },
+                    {
+                        "id":  "glossary:inference",
+                        "type":  "glossary",
+                        "term":  "Inference",
+                        "title":  "Inference",
+                        "slug":  "deployment-monitoring",
+                        "text":  "Using a trained model to produce predictions on new data."
+                    },
+                    {
+                        "id":  "glossary:latency",
+                        "type":  "glossary",
+                        "term":  "Latency",
+                        "title":  "Latency",
+                        "slug":  "deployment-monitoring",
+                        "text":  "Time required to return a prediction after receiving input."
+                    },
+                    {
+                        "id":  "glossary:throughput",
+                        "type":  "glossary",
+                        "term":  "Throughput",
+                        "title":  "Throughput",
+                        "slug":  "deployment-monitoring",
+                        "text":  "Number of predictions processed per time unit."
+                    },
+                    {
+                        "id":  "glossary:flops",
+                        "type":  "glossary",
+                        "term":  "FLOPs",
+                        "title":  "FLOPs",
+                        "slug":  "quantization",
+                        "text":  "Floating-point operations used as a rough compute-effort proxy."
+                    },
+                    {
+                        "id":  "glossary:batch-normalization",
+                        "type":  "glossary",
+                        "term":  "Batch Normalization",
+                        "title":  "Batch Normalization",
+                        "slug":  "convolutional-neural-networks",
+                        "text":  "Layer normalization of activations within mini-batches."
+                    },
+                    {
+                        "id":  "glossary:cross-validation",
+                        "type":  "glossary",
+                        "term":  "Cross-validation",
+                        "title":  "Cross-validation",
+                        "slug":  "evaluation-metrics",
+                        "text":  "Resampling strategy for estimating model performance robustness."
+                    },
+                    {
+                        "id":  "glossary:train/validation/test-split",
+                        "type":  "glossary",
+                        "term":  "Train/Validation/Test Split",
+                        "title":  "Train/Validation/Test Split",
+                        "slug":  "data-preparation",
+                        "text":  "Partitioning data to train, tune, and evaluate models without leakage."
+                    },
+                    {
+                        "id":  "glossary:bias",
+                        "type":  "glossary",
+                        "term":  "Bias",
+                        "title":  "Bias",
+                        "slug":  "model-selection",
+                        "text":  "Systematic error component due to restrictive assumptions."
+                    },
+                    {
+                        "id":  "glossary:variance",
+                        "type":  "glossary",
+                        "term":  "Variance",
+                        "title":  "Variance",
+                        "slug":  "model-selection",
+                        "text":  "Sensitivity of model predictions to data fluctuations."
+                    },
+                    {
+                        "id":  "glossary:precision",
+                        "type":  "glossary",
+                        "term":  "Precision",
+                        "title":  "Precision",
+                        "slug":  "evaluation-metrics",
+                        "text":  "Fraction of predicted positives that are truly positive."
+                    },
+                    {
+                        "id":  "glossary:recall",
+                        "type":  "glossary",
+                        "term":  "Recall",
+                        "title":  "Recall",
+                        "slug":  "evaluation-metrics",
+                        "text":  "Fraction of actual positives that are correctly identified."
+                    },
+                    {
+                        "id":  "glossary:f1-score",
+                        "type":  "glossary",
+                        "term":  "F1 Score",
+                        "title":  "F1 Score",
+                        "slug":  "evaluation-metrics",
+                        "text":  "Harmonic mean of precision and recall for imbalanced tasks."
+                    },
+                    {
+                        "id":  "glossary:roc-auc",
+                        "type":  "glossary",
+                        "term":  "ROC-AUC",
+                        "title":  "ROC-AUC",
+                        "slug":  "evaluation-metrics",
+                        "text":  "Area under ROC curve measuring ranking quality across thresholds."
+                    },
+                    {
+                        "id":  "glossary:confusion-matrix",
+                        "type":  "glossary",
+                        "term":  "Confusion Matrix",
+                        "title":  "Confusion Matrix",
+                        "slug":  "evaluation-metrics",
+                        "text":  "Table of true/false positives/negatives by class."
+                    },
+                    {
+                        "id":  "glossary:feature-engineering",
+                        "type":  "glossary",
+                        "term":  "Feature Engineering",
+                        "title":  "Feature Engineering",
+                        "slug":  "data-preparation",
+                        "text":  "Transforming raw data into predictive inputs for models."
+                    },
+                    {
+                        "id":  "glossary:normalization",
+                        "type":  "glossary",
+                        "term":  "Normalization",
+                        "title":  "Normalization",
+                        "slug":  "data-preparation",
+                        "text":  "Rescaling features to comparable ranges for stable optimization."
+                    },
+                    {
+                        "id":  "glossary:standardization",
+                        "type":  "glossary",
+                        "term":  "Standardization",
+                        "title":  "Standardization",
+                        "slug":  "data-preparation",
+                        "text":  "Centering and scaling features to zero mean and unit variance."
+                    },
+                    {
+                        "id":  "glossary:outlier",
+                        "type":  "glossary",
+                        "term":  "Outlier",
+                        "title":  "Outlier",
+                        "slug":  "data-preparation",
+                        "text":  "Observation that strongly deviates from typical data distribution."
+                    },
+                    {
+                        "id":  "glossary:data-drift",
+                        "type":  "glossary",
+                        "term":  "Data Drift",
+                        "title":  "Data Drift",
+                        "slug":  "deployment-monitoring",
+                        "text":  "Shift in production input distribution relative to training data."
+                    },
+                    {
+                        "id":  "glossary:model-drift",
+                        "type":  "glossary",
+                        "term":  "Model Drift",
+                        "title":  "Model Drift",
+                        "slug":  "deployment-monitoring",
+                        "text":  "Degradation in prediction quality over time due to environment change."
+                    },
+                    {
+                        "id":  "glossary:retraining",
+                        "type":  "glossary",
+                        "term":  "Retraining",
+                        "title":  "Retraining",
+                        "slug":  "deployment-monitoring",
+                        "text":  "Updating model parameters with fresher or broader data."
+                    },
+                    {
+                        "id":  "glossary:concept-drift",
+                        "type":  "glossary",
+                        "term":  "Concept Drift",
+                        "title":  "Concept Drift",
+                        "slug":  "deployment-monitoring",
+                        "text":  "Change in relationship between inputs and target labels."
+                    },
+                    {
+                        "id":  "glossary:baseline-model",
+                        "type":  "glossary",
+                        "term":  "Baseline Model",
+                        "title":  "Baseline Model",
+                        "slug":  "model-selection",
+                        "text":  "Simple benchmark used to contextualize advanced model gains."
+                    },
+                    {
+                        "id":  "glossary:hyperparameter",
+                        "type":  "glossary",
+                        "term":  "Hyperparameter",
+                        "title":  "Hyperparameter",
+                        "slug":  "hyperparameter-tuning",
+                        "text":  "External configuration controlling model structure or training behavior."
+                    },
+                    {
+                        "id":  "glossary:grid-search",
+                        "type":  "glossary",
+                        "term":  "Grid Search",
+                        "title":  "Grid Search",
+                        "slug":  "hyperparameter-tuning",
+                        "text":  "Exhaustive evaluation over predefined hyperparameter combinations."
+                    },
+                    {
+                        "id":  "glossary:random-search",
+                        "type":  "glossary",
+                        "term":  "Random Search",
+                        "title":  "Random Search",
+                        "slug":  "hyperparameter-tuning",
+                        "text":  "Sampling-based hyperparameter exploration over search space."
+                    },
+                    {
+                        "id":  "glossary:bayesian-optimization",
+                        "type":  "glossary",
+                        "term":  "Bayesian Optimization",
+                        "title":  "Bayesian Optimization",
+                        "slug":  "hyperparameter-tuning",
+                        "text":  "Sequential model-based search balancing exploration and exploitation."
+                    },
+                    {
+                        "id":  "glossary:early-stopping",
+                        "type":  "glossary",
+                        "term":  "Early Stopping",
+                        "title":  "Early Stopping",
+                        "slug":  "training-loop-fundamentals",
+                        "text":  "Stopping training when validation performance stops improving."
+                    },
+                    {
+                        "id":  "glossary:ensemble",
+                        "type":  "glossary",
+                        "term":  "Ensemble",
+                        "title":  "Ensemble",
+                        "slug":  "random-forest",
+                        "text":  "Combining multiple models to improve accuracy or robustness."
+                    },
+                    {
+                        "id":  "glossary:bagging",
+                        "type":  "glossary",
+                        "term":  "Bagging",
+                        "title":  "Bagging",
+                        "slug":  "random-forest",
+                        "text":  "Ensemble method training independent learners on bootstrapped samples."
+                    },
+                    {
+                        "id":  "glossary:boosting",
+                        "type":  "glossary",
+                        "term":  "Boosting",
+                        "title":  "Boosting",
+                        "slug":  "model-selection",
+                        "text":  "Sequential ensemble approach emphasizing previously mispredicted examples."
+                    },
+                    {
+                        "id":  "glossary:kernel-trick",
+                        "type":  "glossary",
+                        "term":  "Kernel Trick",
+                        "title":  "Kernel Trick",
+                        "slug":  "support-vector-machines",
+                        "text":  "Implicit mapping enabling linear separators in transformed space."
+                    },
+                    {
+                        "id":  "glossary:margin",
+                        "type":  "glossary",
+                        "term":  "Margin",
+                        "title":  "Margin",
+                        "slug":  "support-vector-machines",
+                        "text":  "Distance between decision boundary and nearest training points."
+                    },
+                    {
+                        "id":  "glossary:centroid",
+                        "type":  "glossary",
+                        "term":  "Centroid",
+                        "title":  "Centroid",
+                        "slug":  "k-means-clustering",
+                        "text":  "Mean vector representing a cluster center in k-means."
+                    },
+                    {
+                        "id":  "glossary:explained-variance",
+                        "type":  "glossary",
+                        "term":  "Explained Variance",
+                        "title":  "Explained Variance",
+                        "slug":  "principal-component-analysis",
+                        "text":  "Fraction of total variance captured by selected components."
+                    },
+                    {
+                        "id":  "glossary:policy",
+                        "type":  "glossary",
+                        "term":  "Policy",
+                        "title":  "Policy",
+                        "slug":  "reinforcement-learning-overview",
+                        "text":  "Mapping from states to actions in reinforcement learning."
+                    },
+                    {
+                        "id":  "glossary:value-function",
+                        "type":  "glossary",
+                        "term":  "Value Function",
+                        "title":  "Value Function",
+                        "slug":  "q-learning",
+                        "text":  "Expected long-term return from a state or state-action pair."
+                    },
+                    {
+                        "id":  "glossary:reward",
+                        "type":  "glossary",
+                        "term":  "Reward",
+                        "title":  "Reward",
+                        "slug":  "reinforcement-learning-overview",
+                        "text":  "Scalar feedback signal defining task objective in RL."
+                    },
+                    {
+                        "id":  "glossary:exploration",
+                        "type":  "glossary",
+                        "term":  "Exploration",
+                        "title":  "Exploration",
+                        "slug":  "reinforcement-learning-overview",
+                        "text":  "Trying uncertain actions to discover better future returns."
+                    },
+                    {
+                        "id":  "glossary:exploitation",
+                        "type":  "glossary",
+                        "term":  "Exploitation",
+                        "title":  "Exploitation",
+                        "slug":  "reinforcement-learning-overview",
+                        "text":  "Choosing currently best-known action to maximize immediate return."
+                    },
+                    {
+                        "id":  "glossary:replay-buffer",
+                        "type":  "glossary",
+                        "term":  "Replay Buffer",
+                        "title":  "Replay Buffer",
+                        "slug":  "deep-q-networks",
+                        "text":  "Memory store of transitions sampled during DQN training."
+                    },
+                    {
+                        "id":  "glossary:target-network",
+                        "type":  "glossary",
+                        "term":  "Target Network",
+                        "title":  "Target Network",
+                        "slug":  "deep-q-networks",
+                        "text":  "Delayed copy of Q-network used to stabilize temporal-difference targets."
+                    },
+                    {
+                        "id":  "glossary:policy-gradient",
+                        "type":  "glossary",
+                        "term":  "Policy Gradient",
+                        "title":  "Policy Gradient",
+                        "slug":  "proximal-policy-optimization",
+                        "text":  "Family of methods optimizing policy directly via gradient ascent."
+                    },
+                    {
+                        "id":  "glossary:kl-divergence",
+                        "type":  "glossary",
+                        "term":  "KL Divergence",
+                        "title":  "KL Divergence",
+                        "slug":  "proximal-policy-optimization",
+                        "text":  "Measure of difference between probability distributions."
+                    },
+                    {
+                        "id":  "glossary:latent-space",
+                        "type":  "glossary",
+                        "term":  "Latent Space",
+                        "title":  "Latent Space",
+                        "slug":  "variational-autoencoders",
+                        "text":  "Compressed representation space learned by generative models."
+                    },
+                    {
+                        "id":  "glossary:mode-collapse",
+                        "type":  "glossary",
+                        "term":  "Mode Collapse",
+                        "title":  "Mode Collapse",
+                        "slug":  "generative-adversarial-networks",
+                        "text":  "GAN failure mode where generator outputs limited variety."
+                    },
+                    {
+                        "id":  "glossary:pruning",
+                        "type":  "glossary",
+                        "term":  "Pruning",
+                        "title":  "Pruning",
+                        "slug":  "model-pruning",
+                        "text":  "Removing less important parameters to reduce model size and cost."
+                    },
+                    {
+                        "id":  "glossary:quantization-aware-training",
+                        "type":  "glossary",
+                        "term":  "Quantization-aware Training",
+                        "title":  "Quantization-aware Training",
+                        "slug":  "quantization",
+                        "text":  "Training with quantization effects simulated to preserve accuracy."
+                    },
+                    {
+                        "id":  "glossary:distillation-temperature",
+                        "type":  "glossary",
+                        "term":  "Distillation Temperature",
+                        "title":  "Distillation Temperature",
+                        "slug":  "knowledge-distillation",
+                        "text":  "Softmax temperature controlling teacher-soft-target smoothness."
+                    },
+                    {
+                        "id":  "glossary:top-k-accuracy",
+                        "type":  "glossary",
+                        "term":  "Top-k Accuracy",
+                        "title":  "Top-k Accuracy",
+                        "slug":  "evaluation-metrics",
+                        "text":  "Metric counting prediction as correct if true label is in top-k outputs."
+                    },
+                    {
+                        "id":  "faq-001",
+                        "type":  "faq",
+                        "title":  "What\u0027s the difference between AI, ML, and deep learning?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "AI is the broad field, ML is a subset using data-driven learning, and deep learning is ML based on multi-layer neural networks."
+                    },
+                    {
+                        "id":  "faq-002",
+                        "type":  "faq",
+                        "title":  "When should I use a Random Forest vs a neural network?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Use Random Forest as a strong tabular baseline with limited data and interpretability needs; prefer neural nets for large-scale unstructured data and representation learning."
+                    },
+                    {
+                        "id":  "faq-003",
+                        "type":  "faq",
+                        "title":  "Why does my model perform great in training but poorly in production?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Common causes include overfitting, data leakage, data drift, and target definition mismatch between offline and online environments."
+                    },
+                    {
+                        "id":  "faq-004",
+                        "type":  "faq",
+                        "title":  "Do I need a GPU to train models?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Not always. Classical ML usually runs on CPU, while deep learning training is typically much faster on GPUs."
+                    },
+                    {
+                        "id":  "faq-005",
+                        "type":  "faq",
+                        "title":  "How do I know if I have enough data?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Track validation learning curves and performance variance. If metrics plateau early and error remains high, you may need better data or features."
+                    },
+                    {
+                        "id":  "faq-006",
+                        "type":  "faq",
+                        "title":  "What\u0027s the cheapest way to fine-tune an LLM?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Start with prompt optimization and retrieval grounding, then use parameter-efficient methods before full fine-tuning."
+                    },
+                    {
+                        "id":  "faq-007",
+                        "type":  "faq",
+                        "title":  "What is the first model I should try for tabular classification?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Try logistic regression and random forest baselines first to establish reference performance and feature quality."
+                    },
+                    {
+                        "id":  "faq-008",
+                        "type":  "faq",
+                        "title":  "How do I choose an evaluation metric?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Choose metrics tied to decision costs. For imbalance, prioritize precision/recall/F1 over raw accuracy."
+                    },
+                    {
+                        "id":  "faq-009",
+                        "type":  "faq",
+                        "title":  "What causes unstable training loss?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Learning rate may be too high, gradients may explode, or data preprocessing may be inconsistent."
+                    },
+                    {
+                        "id":  "faq-010",
+                        "type":  "faq",
+                        "title":  "Should I normalize inputs for tree models?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Usually unnecessary for trees, but still useful when combining with linear or neural models in the same pipeline."
+                    },
+                    {
+                        "id":  "faq-011",
+                        "type":  "faq",
+                        "title":  "When is PCA useful?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "PCA helps when features are highly correlated and you need dimensionality reduction for speed, denoising, or visualization."
+                    },
+                    {
+                        "id":  "faq-012",
+                        "type":  "faq",
+                        "title":  "How can I reduce inference latency?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Use batching carefully, optimize serving hardware, and apply quantization or pruning if accuracy constraints allow."
+                    },
+                    {
+                        "id":  "faq-013",
+                        "type":  "faq",
+                        "title":  "What is concept drift and how do I detect it?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Concept drift is change in input-target relationship. Detect with monitoring on delayed labels and rolling performance slices."
+                    },
+                    {
+                        "id":  "faq-014",
+                        "type":  "faq",
+                        "title":  "Is cross-validation always required?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Not always, but it is strongly recommended on smaller datasets to reduce variance in model selection decisions."
+                    },
+                    {
+                        "id":  "faq-015",
+                        "type":  "faq",
+                        "title":  "How often should I retrain?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Use trigger-based policies from drift and KPI degradation rather than fixed calendars when possible."
+                    },
+                    {
+                        "id":  "faq-016",
+                        "type":  "faq",
+                        "title":  "What is a good baseline for computer vision?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Transfer learning with a pretrained CNN is often the fastest and strongest baseline for image tasks."
+                    },
+                    {
+                        "id":  "faq-017",
+                        "type":  "faq",
+                        "title":  "When should I use transformers over LSTMs?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Transformers dominate for long-range dependencies and parallel training; LSTMs can still be practical for compact sequence workloads."
+                    },
+                    {
+                        "id":  "faq-018",
+                        "type":  "faq",
+                        "title":  "How do I prevent overfitting in deep networks?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Use regularization, dropout, early stopping, augmentation, and stronger validation discipline."
+                    },
+                    {
+                        "id":  "faq-019",
+                        "type":  "faq",
+                        "title":  "What is the difference between pruning and quantization?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Pruning removes parameters or channels; quantization reduces numeric precision. They are often complementary."
+                    },
+                    {
+                        "id":  "faq-020",
+                        "type":  "faq",
+                        "title":  "Can I deploy one model for all user segments?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Sometimes, but segment-aware evaluation is required to avoid hidden performance disparities and fairness regressions."
+                    },
+                    {
+                        "id":  "faq-021",
+                        "type":  "faq",
+                        "title":  "How do I choose k in k-means?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Use domain constraints, elbow/silhouette diagnostics, and stability checks across random initializations."
+                    },
+                    {
+                        "id":  "faq-022",
+                        "type":  "faq",
+                        "title":  "What are common GAN failure modes?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Mode collapse, training instability, and discriminator overpowering are frequent in practice."
+                    },
+                    {
+                        "id":  "faq-023",
+                        "type":  "faq",
+                        "title":  "Is Bayesian optimization always better than random search?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Not always. On small budgets or noisy objectives, random search can be competitive and simpler to parallelize."
+                    },
+                    {
+                        "id":  "faq-024",
+                        "type":  "faq",
+                        "title":  "How do I monitor a model without immediate labels?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Track proxy metrics such as feature drift, prediction entropy, and business funnel indicators until labels arrive."
+                    },
+                    {
+                        "id":  "faq-025",
+                        "type":  "faq",
+                        "title":  "What should go into an ML problem statement?",
+                        "slug":  "faq",
+                        "tags":  [
+                                     "faq"
+                                 ],
+                        "text":  "Business objective, target definition, constraints, acceptable risk, decision threshold policy, and success KPI."
+                    }
+                ]
+}

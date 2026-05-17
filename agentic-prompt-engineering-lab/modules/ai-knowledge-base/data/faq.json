@@ -1,0 +1,228 @@
+﻿[
+    {
+        "related":  [
+                        "supervised-learning-overview",
+                        "convolutional-neural-networks"
+                    ],
+        "id":  "faq-001",
+        "question":  "What\u0027s the difference between AI, ML, and deep learning?",
+        "answer":  "AI is the broad field, ML is a subset using data-driven learning, and deep learning is ML based on multi-layer neural networks."
+    },
+    {
+        "related":  [
+                        "random-forest",
+                        "model-selection"
+                    ],
+        "id":  "faq-002",
+        "question":  "When should I use a Random Forest vs a neural network?",
+        "answer":  "Use Random Forest as a strong tabular baseline with limited data and interpretability needs; prefer neural nets for large-scale unstructured data and representation learning."
+    },
+    {
+        "related":  [
+                        "deployment-monitoring",
+                        "evaluation-metrics"
+                    ],
+        "id":  "faq-003",
+        "question":  "Why does my model perform great in training but poorly in production?",
+        "answer":  "Common causes include overfitting, data leakage, data drift, and target definition mismatch between offline and online environments."
+    },
+    {
+        "related":  [
+                        "training-loop-fundamentals",
+                        "quantization"
+                    ],
+        "id":  "faq-004",
+        "question":  "Do I need a GPU to train models?",
+        "answer":  "Not always. Classical ML usually runs on CPU, while deep learning training is typically much faster on GPUs."
+    },
+    {
+        "related":  [
+                        "data-preparation",
+                        "evaluation-metrics"
+                    ],
+        "id":  "faq-005",
+        "question":  "How do I know if I have enough data?",
+        "answer":  "Track validation learning curves and performance variance. If metrics plateau early and error remains high, you may need better data or features."
+    },
+    {
+        "related":  [
+                        "transfer-learning",
+                        "transformers-and-attention-mechanism"
+                    ],
+        "id":  "faq-006",
+        "question":  "What\u0027s the cheapest way to fine-tune an LLM?",
+        "answer":  "Start with prompt optimization and retrieval grounding, then use parameter-efficient methods before full fine-tuning."
+    },
+    {
+        "related":  [
+                        "model-selection",
+                        "random-forest"
+                    ],
+        "id":  "faq-007",
+        "question":  "What is the first model I should try for tabular classification?",
+        "answer":  "Try logistic regression and random forest baselines first to establish reference performance and feature quality."
+    },
+    {
+        "related":  [
+                        "evaluation-metrics",
+                        "problem-definition"
+                    ],
+        "id":  "faq-008",
+        "question":  "How do I choose an evaluation metric?",
+        "answer":  "Choose metrics tied to decision costs. For imbalance, prioritize precision/recall/F1 over raw accuracy."
+    },
+    {
+        "related":  [
+                        "training-loop-fundamentals",
+                        "data-preparation"
+                    ],
+        "id":  "faq-009",
+        "question":  "What causes unstable training loss?",
+        "answer":  "Learning rate may be too high, gradients may explode, or data preprocessing may be inconsistent."
+    },
+    {
+        "related":  [
+                        "decision-trees",
+                        "data-preparation"
+                    ],
+        "id":  "faq-010",
+        "question":  "Should I normalize inputs for tree models?",
+        "answer":  "Usually unnecessary for trees, but still useful when combining with linear or neural models in the same pipeline."
+    },
+    {
+        "related":  [
+                        "principal-component-analysis",
+                        "k-means-clustering"
+                    ],
+        "id":  "faq-011",
+        "question":  "When is PCA useful?",
+        "answer":  "PCA helps when features are highly correlated and you need dimensionality reduction for speed, denoising, or visualization."
+    },
+    {
+        "related":  [
+                        "deployment-monitoring",
+                        "quantization",
+                        "model-pruning"
+                    ],
+        "id":  "faq-012",
+        "question":  "How can I reduce inference latency?",
+        "answer":  "Use batching carefully, optimize serving hardware, and apply quantization or pruning if accuracy constraints allow."
+    },
+    {
+        "related":  [
+                        "deployment-monitoring",
+                        "evaluation-metrics"
+                    ],
+        "id":  "faq-013",
+        "question":  "What is concept drift and how do I detect it?",
+        "answer":  "Concept drift is change in input-target relationship. Detect with monitoring on delayed labels and rolling performance slices."
+    },
+    {
+        "related":  [
+                        "evaluation-metrics",
+                        "model-selection"
+                    ],
+        "id":  "faq-014",
+        "question":  "Is cross-validation always required?",
+        "answer":  "Not always, but it is strongly recommended on smaller datasets to reduce variance in model selection decisions."
+    },
+    {
+        "related":  [
+                        "deployment-monitoring",
+                        "problem-definition"
+                    ],
+        "id":  "faq-015",
+        "question":  "How often should I retrain?",
+        "answer":  "Use trigger-based policies from drift and KPI degradation rather than fixed calendars when possible."
+    },
+    {
+        "related":  [
+                        "convolutional-neural-networks",
+                        "transfer-learning"
+                    ],
+        "id":  "faq-016",
+        "question":  "What is a good baseline for computer vision?",
+        "answer":  "Transfer learning with a pretrained CNN is often the fastest and strongest baseline for image tasks."
+    },
+    {
+        "related":  [
+                        "transformers-and-attention-mechanism",
+                        "long-short-term-memory"
+                    ],
+        "id":  "faq-017",
+        "question":  "When should I use transformers over LSTMs?",
+        "answer":  "Transformers dominate for long-range dependencies and parallel training; LSTMs can still be practical for compact sequence workloads."
+    },
+    {
+        "related":  [
+                        "training-loop-fundamentals",
+                        "evaluation-metrics"
+                    ],
+        "id":  "faq-018",
+        "question":  "How do I prevent overfitting in deep networks?",
+        "answer":  "Use regularization, dropout, early stopping, augmentation, and stronger validation discipline."
+    },
+    {
+        "related":  [
+                        "model-pruning",
+                        "quantization"
+                    ],
+        "id":  "faq-019",
+        "question":  "What is the difference between pruning and quantization?",
+        "answer":  "Pruning removes parameters or channels; quantization reduces numeric precision. They are often complementary."
+    },
+    {
+        "related":  [
+                        "evaluation-metrics",
+                        "deployment-monitoring"
+                    ],
+        "id":  "faq-020",
+        "question":  "Can I deploy one model for all user segments?",
+        "answer":  "Sometimes, but segment-aware evaluation is required to avoid hidden performance disparities and fairness regressions."
+    },
+    {
+        "related":  [
+                        "k-means-clustering",
+                        "evaluation-metrics"
+                    ],
+        "id":  "faq-021",
+        "question":  "How do I choose k in k-means?",
+        "answer":  "Use domain constraints, elbow/silhouette diagnostics, and stability checks across random initializations."
+    },
+    {
+        "related":  [
+                        "generative-adversarial-networks",
+                        "variational-autoencoders"
+                    ],
+        "id":  "faq-022",
+        "question":  "What are common GAN failure modes?",
+        "answer":  "Mode collapse, training instability, and discriminator overpowering are frequent in practice."
+    },
+    {
+        "related":  [
+                        "hyperparameter-tuning",
+                        "model-selection"
+                    ],
+        "id":  "faq-023",
+        "question":  "Is Bayesian optimization always better than random search?",
+        "answer":  "Not always. On small budgets or noisy objectives, random search can be competitive and simpler to parallelize."
+    },
+    {
+        "related":  [
+                        "deployment-monitoring",
+                        "evaluation-metrics"
+                    ],
+        "id":  "faq-024",
+        "question":  "How do I monitor a model without immediate labels?",
+        "answer":  "Track proxy metrics such as feature drift, prediction entropy, and business funnel indicators until labels arrive."
+    },
+    {
+        "related":  [
+                        "problem-definition",
+                        "evaluation-metrics"
+                    ],
+        "id":  "faq-025",
+        "question":  "What should go into an ML problem statement?",
+        "answer":  "Business objective, target definition, constraints, acceptable risk, decision threshold policy, and success KPI."
+    }
+]

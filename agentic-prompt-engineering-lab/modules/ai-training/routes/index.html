@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Training Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/ai-training.css" />
+  </head>
+  <body>
+    <div class="ai-training-shell">
+      <header class="ai-training-header">
+        <p class="eyebrow">Agentic Prompt Engineering Lab</p>
+        <h1>AI Training Center</h1>
+        <p id="subtitle" class="subtitle">Choose a learning category, open lessons, and track completion as you progress.</p>
+      </header>
+
+      <div id="progress-root"></div>
+      <p id="ai-training-announcer" class="sr-only" aria-live="polite"></p>
+      <main id="view-root" aria-live="polite"></main>
+    </div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
